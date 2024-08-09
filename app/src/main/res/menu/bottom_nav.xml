@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/Home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home"/>
+    <item android:id="@+id/Inventory"
+        android:icon="@drawable/baseline_inventory_24"
+        android:title="Inventory"/>
+    <item android:id="@+id/Stats"
+        android:icon="@drawable/baseline_pie_chart_24"
+        android:title="Stats"/>
+
+    <item android:id="@+id/Bill"
+        android:icon="@drawable/baseline_receipt_24"
+        android:title="Billing"/>
+
+</menu>
