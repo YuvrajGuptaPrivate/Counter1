@@ -50,5 +50,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation ("com.karumi:dexter:6.2.2")
+    implementation ("com.itextpdf:itextpdf:5.0.6")
+
+
 
 }
