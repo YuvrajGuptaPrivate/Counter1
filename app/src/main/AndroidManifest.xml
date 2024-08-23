@@ -24,6 +24,12 @@
             android:name=".SignUp"
             android:exported="false" />
         <activity
+            android:name=".InvoiceScreen"
+            android:exported="true" />
+        <activity
+            android:name=".Inputs"
+            android:exported="true" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
