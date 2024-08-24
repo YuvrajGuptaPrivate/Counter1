@@ -16,7 +16,7 @@ class InvoiceAdapter(private val invoices: List<Invoice>, private val onClick: (
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val invoice = invoices[position]
-        holder.bind(invoice)
+        holder.bind(invoice, onClick)
     }
 
     override fun getItemCount(): Int = invoices.size
@@ -27,7 +27,7 @@ class InvoiceAdapter(private val invoices: List<Invoice>, private val onClick: (
         private val date: TextView = itemView.findViewById(R.id.date)
         private val status: TextView = itemView.findViewById(R.id.status)
 
-        fun bind(invoice: Invoice) {
+        fun bind(invoice: Invoice, onClick: (Invoice) -> Unit) {
             invoiceNumber.text = "Invoice #${invoice.id}"
             clientName.text = "Client Name: ${invoice.clientName}"
             date.text = "Date: ${invoice.date}"

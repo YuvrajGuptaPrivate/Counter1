@@ -132,11 +132,22 @@
                     android:layout_height="wrap_content"
                     android:text="200"
                     android:id="@+id/edt_grand_total"
+                    android:layout_marginBottom="10dp"
                     android:hint="Grand Total" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <include
+                layout="@layout/templateutil"/>
+
         </LinearLayout>
+
+
+
+
+
+
     </ScrollView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -152,12 +163,14 @@
             android:layout_height="match_parent">
         <Button
             android:layout_width="match_parent"
+            android:id="@+id/proceedbtn"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
             android:text="Proceed"/>
         <Button
             android:layout_width="match_parent"
+            android:id="@+id/printbtn"
             android:layout_height="match_parent"
             android:background="@drawable/rounded_button"
             android:layout_weight="1"

@@ -1,42 +1,97 @@
 package com.example.counter1
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.icu.text.SimpleDateFormat
-import android.media.MediaScannerConnection
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.itextpdf.text.Document
-import com.itextpdf.text.Image
-import com.itextpdf.text.pdf.PdfWriter
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
-import androidx.activity.result.contract.ActivityResultContracts
-import java.util.Date
-import java.util.Locale
 
+class Billing : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: InvoiceAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_billing, container, false)
+
+        recyclerView = view.findViewById(R.id.InvoiceRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val newInvoiceButton = view.findViewById<Button>(R.id.NewInvoice)
+        newInvoiceButton.setOnClickListener {
+            navigateToInvoiceScreen()
+        }
+
+        val createNewInvoiceButton = view.findViewById<Button>(R.id.createBtn)
+        createNewInvoiceButton.setOnClickListener {
+            navigateToInvoiceScreen()
+        }
+
+        val invoices = listOf(
+            Invoice(1, "John Doe", "2022-01-01", true),
+            Invoice(2, "Jane Doe", "2022-01-02", false),
+            Invoice(3, "Bob Smith", "2022-01-03", true),
+        )
+
+        adapter = InvoiceAdapter(invoices) { invoice ->
+            Toast.makeText(requireContext(), "Clicked on invoice ${invoice.id}", Toast.LENGTH_SHORT).show()
+        }
+
+        recyclerView.adapter = adapter
+
+        return view
+    }
+
+    private fun navigateToInvoiceScreen() {
+        val intent = Intent(requireContext(), InvoiceScreen::class.java)
+        startActivity(intent)
+    }
+}
+
+data class Invoice(val id: Int, val clientName: String, val date: String, val isPaid: Boolean)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Billing : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
@@ -59,14 +114,6 @@ class Billing : Fragment() {
             val intent = Intent(requireContext(), InvoiceScreen::class.java)
             startActivity(intent)
         }
-
-        val editInvoiceButton = view.findViewById<Button>(R.id.EditTemplate)
-          editInvoiceButton.setOnClickListener {
-            val intent = Intent(requireContext(), Inputs::class.java)
-            startActivity(intent)
-        }
-
-
 
 
         val invoices = listOf(
@@ -252,7 +299,7 @@ data class Invoice(val id: Int, val clientName: String, val date: String, val is
 
 
 
-
+*/
 
 
 

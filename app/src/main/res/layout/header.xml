@@ -1,114 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_black"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TAX INVOICE"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="INVOICE NO : 1234"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DATE : 04-03-2022"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_black"
         android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            >
-
-        </ImageView>
-
-
-        <include layout="@layout/vertical_border_black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:text="BUSINESS NAME"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="132 Street, City, State, PIN"
+            android:textSize="10sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="GSTIN: AAA213465"
+            android:textSize="10sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Email ID: 122@gmail.com"
+            android:textSize="10sp" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:padding="3dp"
-                    android:textSize="13sp"
-                    android:text="company_name"
-                    android:textColor="@color/black"
-                    android:textStyle="bold">
-
-                </EditText>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="WAREHOUSE"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="8sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:text="COMMERCIAL"
-                    android:textColor="@color/white"
-                    android:textSize="8sp"  />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="RESIDENTIAL"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="8sp"  />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAlignment="center"
-                    android:padding="5dp"
-                    android:textSize="8sp"
-                    android:textColor="@color/black"
-                    android:text="Demo Address, Demo State , Demo AreaDemo Address, Demo State , Demo Area"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAN NO. AAA132456"
+            android:layout_gravity="center"
+            android:textSize="10sp" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
