@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/company_name_edit_text"
+        android:id="@+id/companyname_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -44,8 +44,9 @@
         android:hint="Company Name"
         android:inputType="text" />
 
+
     <EditText
-        android:id="@+id/company_address_edit_text"
+        android:id="@+id/companyaddress_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -54,7 +55,7 @@
         android:inputType="textMultiLine" />
 
     <EditText
-        android:id="@+id/beneficiary_name_edit_text"
+        android:id="@+id/beneficiaryname_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -62,7 +63,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/bank_ifsc_code_edit_text"
+        android:id="@+id/bankifsccode_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -71,16 +72,15 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/account_number_edit_text"
+        android:id="@+id/accountnumber_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Account Number"
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:inputType="number" />
-
     <EditText
-        android:id="@+id/bank_name_edit_text"
+        android:id="@+id/bankname_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Bank Name"
@@ -89,7 +89,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/upi_id_edit_text"
+        android:id="@+id/upiid_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="UPI ID"
@@ -98,7 +98,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/gst_number_edit_text"
+        android:id="@+id/gstnumber_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="GST Number"
@@ -107,7 +107,7 @@
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/phone_number_edit_text"
+        android:id="@+id/phonenumber_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone Number"
@@ -116,16 +116,16 @@
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/contact_information_edit_text"
+        android:id="@+id/email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Contact Information"
+        android:hint="Email Id"
         android:minHeight="48dp"
         android:minWidth="48dp"
         android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/save_input_button"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"

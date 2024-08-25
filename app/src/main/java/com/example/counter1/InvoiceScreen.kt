@@ -19,10 +19,13 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.textfield.TextInputEditText
 import com.itextpdf.text.Document
 import com.itextpdf.text.Image
 import com.itextpdf.text.pdf.PdfWriter
@@ -45,39 +48,78 @@ class InvoiceScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_invoice_screen)
-
         layout = findViewById(R.id.templateutil)
         button1 = findViewById(R.id.printbtn)
         button2 = findViewById(R.id.proceedbtn)
 
 
-        if (button2 != null) {
-            button2.setOnClickListener {
-
+        button2.setOnClickListener {
+                updateTemplateLayout()
             }
-        } else {
-            // Handle the case when the button is null
-            Log.e("InvoiceScreen", "Button is null")
-        }
-        if (button1 != null) {
-            button1.setOnClickListener {
+
+        button1.setOnClickListener {
                 val fileName = getFileName()
                 fName = fileName
                 layoutTOimageConverter()
             }
-        } else {
-            Log.e("InvoiceScreen", "Button is null")
-        }
-
-
-
 
 
         if (!checkPermission()) {
             requestPermission()
         }
+        updateTemplateLayoutCompany()
+
+    }
+
+    private fun updateTemplateLayout() {
+        val customerNameInput: TextInputEditText = findViewById(R.id.customername_input)
+        val customerAddressInput: TextInputEditText = findViewById(R.id.customerAddress_input)
+        val customerEmailInput: TextInputEditText = findViewById(R.id.CustomerEmail_input)
+        val customerGstInput: TextInputEditText = findViewById(R.id.CustomerGst_input)
+
+        val customerNameOutput: TextView = findViewById(R.id.customername_output)
+        val customerAddressOutput: TextView = findViewById(R.id.customerAddress_output)
+        val customerEmailOutput: TextView = findViewById(R.id.CustomerEmail_output)
+        val customerGstOutput: TextView = findViewById(R.id.CustomerGst_output)
+        val invoiceNumberOutput: TextView = findViewById(R.id.invoice_number_output)
+        val dateOutput: TextView = findViewById(R.id.date_output)
 
 
+        customerNameOutput.text = "PARTY'S NAME - ${customerNameInput.text}"
+        customerAddressOutput.text = "ADDRESS: ${customerAddressInput.text}"
+        customerEmailOutput.text = "Email ID: ${customerEmailInput.text}"
+        customerGstOutput.text = "GSTIN: ${customerGstInput.text}"
+
+        // Generate current date
+        val currentDate = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(Date())
+        dateOutput.text = "DATE: $currentDate"
+
+        // Generate unique invoice number
+        val invoiceNumber = "INV-" + System.currentTimeMillis()
+        invoiceNumberOutput.text = "INVOICE NUMBER: $invoiceNumber"
+    }
+
+    // Modified updateTemplateLayout function
+     private fun updateTemplateLayoutCompany() {
+        val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
+
+        val companyNameOutput: TextView = findViewById(R.id.company_name_output)
+        val companyAddressOutput: TextView = findViewById(R.id.company_address_output)
+        val gstNumberOutput: TextView = findViewById(R.id.gst_number_output)
+        val emailIdOutput: TextView = findViewById(R.id.email_id_output)
+        val phoneNumberOutput: TextView = findViewById(R.id.phone_number_output)
+
+        val companyName = sharedPreferences.getString("company_name", "")
+        val companyAddress = sharedPreferences.getString("company_address", "")
+        val gstNumber = sharedPreferences.getString("gst_number", "")
+        val emailId = sharedPreferences.getString("email_id", "")
+        val phoneNumber = sharedPreferences.getString("phone_number", "")
+
+        companyNameOutput.text = companyName
+        companyAddressOutput.text = companyAddress
+        gstNumberOutput.text = "GSTIN: $gstNumber"
+        emailIdOutput.text = "Email ID: $emailId"
+        phoneNumberOutput.text = "Phone Number: $phoneNumber"
     }
 
     private fun getFileName(): String {
@@ -121,8 +163,12 @@ class InvoiceScreen : AppCompatActivity() {
             document.close()
             Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show()
             savePDFToLocalStorage()
-            val intent = Intent(this, Billing::class.java)
-            startActivity(intent)
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            val myFragment = Billing()
+            fragmentTransaction.replace(R.id.Framelayout, myFragment)
+            fragmentTransaction.commit()
+
         } catch (e: Exception) {
             Log.e("Error", "Error generating PDF: $e")
             Toast.makeText(this, "Error generating PDF", Toast.LENGTH_SHORT).show()

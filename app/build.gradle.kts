@@ -39,7 +39,6 @@ android {
 }
 
 
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -52,6 +51,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.karumi:dexter:6.2.2")
     implementation ("com.itextpdf:itextpdf:5.0.6")
+
+
 
 
 

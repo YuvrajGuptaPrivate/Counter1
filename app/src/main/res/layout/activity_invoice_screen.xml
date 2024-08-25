@@ -55,8 +55,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/custom_name"
-                    android:hint="Enter Custom Name" />
+                    android:id="@+id/customername_input"
+                    android:hint="Enter Customer Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -68,7 +68,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/customer_phone_number"
+                    android:id="@+id/customerphone_number_input"
                     android:hint="Phone number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,8 +80,33 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/customerdetails"
-                    android:hint="Additional Information" />
+                    android:id="@+id/customerAddress_input"
+                    android:hint="Customer Address" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/CustomerGst_input"
+                    android:hint="Customer GST" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/CustomerEmail_input"
+                    android:hint="Customer Email" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView

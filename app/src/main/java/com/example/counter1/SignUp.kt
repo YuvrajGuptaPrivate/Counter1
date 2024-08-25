@@ -23,9 +23,23 @@ class SignUp : AppCompatActivity() {
 
 
         button.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
+
+            val companyName = sharedPreferences.getString("company_name", "")
+            val companyAddress = sharedPreferences.getString("company_address", "")
+            val gstNumber = sharedPreferences.getString("gst_number", "")
+            val phoneNumber = sharedPreferences.getString("phone_number", "")
+            val emailId = sharedPreferences.getString("email_id", "")
+
+            if (companyName!!.isNotEmpty() && companyAddress!!.isNotEmpty() && gstNumber!!.isNotEmpty() && phoneNumber!!.isNotEmpty() && emailId!!.isNotEmpty()) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, Inputs::class.java)
+                startActivity(intent)
+            }
         }
+
         textView.setOnClickListener{
             val intent = Intent(this,Login::class.java)
             startActivity(intent)
