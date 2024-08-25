@@ -54,14 +54,14 @@ class InvoiceScreen : AppCompatActivity() {
 
 
         button2.setOnClickListener {
-                updateTemplateLayout()
-            }
+            updateTemplateLayout()
+        }
 
         button1.setOnClickListener {
-                val fileName = getFileName()
-                fName = fileName
-                layoutTOimageConverter()
-            }
+            val fileName = getFileName()
+            fName = fileName
+            layoutTOimageConverter()
+        }
 
 
         if (!checkPermission()) {
@@ -100,7 +100,7 @@ class InvoiceScreen : AppCompatActivity() {
     }
 
     // Modified updateTemplateLayout function
-     private fun updateTemplateLayoutCompany() {
+    private fun updateTemplateLayoutCompany() {
         val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
 
         val companyNameOutput: TextView = findViewById(R.id.company_name_output)
@@ -152,10 +152,26 @@ class InvoiceScreen : AppCompatActivity() {
     private fun imageToPDF() {
         try {
             val document = Document()
-            val dirpath = Environment.getExternalStorageDirectory().toString()
-            PdfWriter.getInstance(document, FileOutputStream("$dirpath/$fName.pdf"))
+            val dirpath = getExternalFilesDir(null).toString()
+            val clientName = findViewById<TextView>(R.id.customername_output).text.toString().replace("PARTY'S NAME - ", "")
+            val invoiceNumber = findViewById<TextView>(R.id.invoice_number_output).text.toString().replace("INVOICE NUMBER: ", "")
+            val date = findViewById<TextView>(R.id.date_output).text.toString().replace("DATE: ", "")
+            val fileName = "$clientName-$invoiceNumber-$date.jpg"
+            val imageFile = "$dirpath/$fileName"
+            val pdfFileName = "$clientName-$invoiceNumber-$date.pdf"
+            val pdfFile = File("$dirpath/$pdfFileName")
+
+            // Check if the image file exists
+            if (!File(imageFile).exists()) {
+                Toast.makeText(this, "Image file not found", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            // Create the PDF file
+            pdfFile.parentFile?.mkdirs()
+            PdfWriter.getInstance(document, FileOutputStream(pdfFile))
             document.open()
-            val img = Image.getInstance("$dirpath/Pictures/Download/$fName.jpg")
+            val img = Image.getInstance(imageFile)
             val scaler = (document.pageSize.width - document.leftMargin() - document.rightMargin() - 0) / img.width * 100
             img.scalePercent(scaler)
             img.alignment = Image.ALIGN_CENTER or Image.ALIGN_TOP
@@ -163,43 +179,29 @@ class InvoiceScreen : AppCompatActivity() {
             document.close()
             Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show()
             savePDFToLocalStorage()
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            val myFragment = Billing()
-            fragmentTransaction.replace(R.id.Framelayout, myFragment)
-            fragmentTransaction.commit()
 
+            // Commit the fragment transaction on the main thread
+            runOnUiThread {
+                val fragmentManager = supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                val myFragment = Billing()
+                fragmentTransaction.replace(R.id.Framelayout, myFragment)
+                fragmentTransaction.commit()
+            }
         } catch (e: Exception) {
             Log.e("Error", "Error generating PDF: $e")
             Toast.makeText(this, "Error generating PDF", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun savePDFToLocalStorage() {
-        val pdfFile = File(this.filesDir, "invoice.pdf")
-        val fos = FileOutputStream(pdfFile)
-        val document = Document()
-        PdfWriter.getInstance(document, fos)
-        document.open()
-        val img = Image.getInstance("${Environment.getExternalStorageDirectory()}/Pictures/Download/$fName.jpg")
-        document.add(img)
-        document.close()
-        fos.close()
-        Toast.makeText(this, "PDF saved to local storage", Toast.LENGTH_SHORT).show()
-    }
-
 
     private fun saveBitMap(context: Context, drawView: View): File? {
-        val pictureFileDir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Download")
-        if (!pictureFileDir.exists()) {
-            val isDirectoryCreated = pictureFileDir.mkdirs()
-            if (!isDirectoryCreated) {
-                Log.i("ATG", "Can't create directory to save the image")
-                return null
-            }
-        }
-        val filename = "$pictureFileDir/$fName.jpg"
-        val pictureFile = File(filename)
+        val dirpath = getExternalFilesDir(null).toString()
+        val clientName = findViewById<TextView>(R.id.customername_output).text.toString().replace("PARTY'S NAME - ", "")
+        val invoiceNumber = findViewById<TextView>(R.id.invoice_number_output).text.toString().replace("INVOICE NUMBER: ", "")
+        val date = findViewById<TextView>(R.id.date_output).text.toString().replace("DATE: ", "")
+        val fileName = "$clientName-$invoiceNumber-$date.jpg"
+        val pictureFile = File("$dirpath/$fileName")
         val bitmap = getBitmapFromView(drawView)
         try {
             pictureFile.createNewFile()
@@ -207,12 +209,24 @@ class InvoiceScreen : AppCompatActivity() {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream)
             oStream.flush()
             oStream.close()
+            scanGallery(context, pictureFile.absolutePath) // Scan the image file after saving it
         } catch (e: IOException) {
             e.printStackTrace()
             Log.i("TAG", "There was an issue saving the image.")
         }
-        scanGallery(context, pictureFile.absolutePath)
         return pictureFile
+    }
+
+    private fun savePDFToLocalStorage() {
+        val dirpath = getExternalFilesDir(null).toString()
+        val clientName = findViewById<TextView>(R.id.customername_output).text.toString().replace("PARTY'S NAME - ", "")
+        val invoiceNumber = findViewById<TextView>(R.id.invoice_number_output).text.toString().replace("INVOICE NUMBER: ", "")
+        val date = findViewById<TextView>(R.id.date_output).text.toString().replace("DATE: ", "")
+        val pdfFileName = "$clientName-$invoiceNumber-$date.pdf"
+        val sourceFile = File("$dirpath/$pdfFileName")
+        val destinationFile = File(this.filesDir, pdfFileName)
+        sourceFile.copyTo(destinationFile)
+        Toast.makeText(this, "PDF saved to local storage", Toast.LENGTH_SHORT).show()
     }
 
     private fun getBitmapFromView(view: View): Bitmap {
@@ -228,14 +242,12 @@ class InvoiceScreen : AppCompatActivity() {
         return returnedBitmap
     }
 
-    private fun scanGallery(cntx: Context, path: String) {
-        try {
-            MediaScannerConnection.scanFile(cntx, arrayOf(path), null, object : MediaScannerConnection.OnScanCompletedListener {
-                override fun onScanCompleted(path: String, uri: Uri) {}
-            })
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    private fun scanGallery(context: Context, filePath: String) {
+        val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+        val file = File(filePath)
+        val contentUri = Uri.fromFile(file)
+        mediaScanIntent.setData(contentUri)
+        context.sendBroadcast(mediaScanIntent)
     }
 
     private fun checkPermission(): Boolean {
