@@ -1,3 +1,4 @@
+
 package com.example.counter1
 
 import android.content.Intent
@@ -25,6 +26,12 @@ class Billing : Fragment() {
         recyclerView = view.findViewById(R.id.InvoiceRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+        val invoices = getInvoicesFromStorage()
+        adapter = InvoiceAdapter(invoices) { invoice ->
+            Toast.makeText(requireContext(), "Clicked on invoice ${invoice.id}", Toast.LENGTH_SHORT).show()
+        }
+        recyclerView.adapter = adapter
+
         val newInvoiceButton = view.findViewById<Button>(R.id.NewInvoice)
         newInvoiceButton.setOnClickListener {
             navigateToInvoiceScreen()
@@ -35,19 +42,37 @@ class Billing : Fragment() {
             navigateToInvoiceScreen()
         }
 
-        val invoices = listOf(
-            Invoice(1, "John Doe", "2022-01-01", true),
-            Invoice(2, "Jane Doe", "2022-01-02", false),
-            Invoice(3, "Bob Smith", "2022-01-03", true),
-        )
+        return view
+    }
 
-        adapter = InvoiceAdapter(invoices) { invoice ->
-            Toast.makeText(requireContext(), "Clicked on invoice ${invoice.id}", Toast.LENGTH_SHORT).show()
+    private fun getInvoicesFromStorage(): List<Invoice> {
+        val invoices = mutableListOf<Invoice>()
+        val filesDir = requireContext().filesDir
+        val files = filesDir.listFiles()
+
+        files?.forEach { file ->
+            if (file.isFile && file.name.endsWith(".pdf")) {
+                val pdfFileName = file.name
+                val parts = pdfFileName.split("-")
+
+                if (parts.size == 4 && parts[1] == "INV") {
+                    val clientName = parts[0]
+                    val invoiceNumber = parts[2]
+                    val date = parts[3].replace(".pdf", "")
+
+                    try {
+                        val id = invoiceNumber.toLong()
+                        invoices.add(Invoice(id, clientName, date, false))
+                    } catch (e: NumberFormatException) {
+                        // Ignore files with invalid invoice numbers
+                    }
+                } else {
+                    // Ignore files with invalid naming convention
+                }
+            }
         }
 
-        recyclerView.adapter = adapter
-
-        return view
+        return invoices
     }
 
     private fun navigateToInvoiceScreen() {
@@ -56,10 +81,7 @@ class Billing : Fragment() {
     }
 }
 
-data class Invoice(val id: Int, val clientName: String, val date: String, val isPaid: Boolean)
-
-
-
+data class Invoice(val id: Long, val clientName: String, val date: String, val isPaid: Boolean)
 
 
 

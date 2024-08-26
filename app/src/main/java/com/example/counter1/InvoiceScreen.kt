@@ -8,7 +8,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.icu.text.SimpleDateFormat
-import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -24,17 +23,23 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.itextpdf.text.Document
 import com.itextpdf.text.Image
 import com.itextpdf.text.pdf.PdfWriter
+import java.io.BufferedReader
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InputStreamReader
 import java.util.Date
 import java.util.Locale
+
+
 
 class InvoiceScreen : AppCompatActivity() {
 
@@ -42,6 +47,11 @@ class InvoiceScreen : AppCompatActivity() {
     private lateinit var layout: LinearLayout
     private lateinit var button1: Button
     private lateinit var button2: Button
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewAdapter: Billadapter
+    private lateinit var inventoryData: ArrayList<Item>
+
+
 
 
 
@@ -52,6 +62,14 @@ class InvoiceScreen : AppCompatActivity() {
         button1 = findViewById(R.id.printbtn)
         button2 = findViewById(R.id.proceedbtn)
 
+        recyclerView = findViewById(R.id.invoicescreenrecyclerview)
+
+        // Load data from internal storage
+        inventoryData = loadInventoryData()
+
+        val adapter = Billadapter(this, inventoryData)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         button2.setOnClickListener {
             updateTemplateLayout()
@@ -69,6 +87,14 @@ class InvoiceScreen : AppCompatActivity() {
         }
         updateTemplateLayoutCompany()
 
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        recyclerViewAdapter = Billadapter(this,inventoryData)
+        recyclerView.adapter = recyclerViewAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun updateTemplateLayout() {
@@ -99,6 +125,26 @@ class InvoiceScreen : AppCompatActivity() {
         invoiceNumberOutput.text = "INVOICE NUMBER: $invoiceNumber"
     }
 
+    private fun loadInventoryData(): ArrayList<Item> {
+        val file = File(this.filesDir, "inventory_data.txt")
+        val data = ArrayList<Item>()
+
+        if (file.exists()) {
+            val fileInputStream = FileInputStream(file)
+            val inputStreamReader = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                val parts = line!!.split(",")
+                data.add(Item(parts[0], parts[1], parts[2], parts[3]))
+            }
+
+            bufferedReader.close()
+        }
+
+        return data
+    }
     // Modified updateTemplateLayout function
     private fun updateTemplateLayoutCompany() {
         val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
@@ -108,6 +154,8 @@ class InvoiceScreen : AppCompatActivity() {
         val gstNumberOutput: TextView = findViewById(R.id.gst_number_output)
         val emailIdOutput: TextView = findViewById(R.id.email_id_output)
         val phoneNumberOutput: TextView = findViewById(R.id.phone_number_output)
+        val footercompanyOutput: TextView = findViewById(R.id.footercompanyname)
+
 
         val companyName = sharedPreferences.getString("company_name", "")
         val companyAddress = sharedPreferences.getString("company_address", "")
@@ -120,6 +168,7 @@ class InvoiceScreen : AppCompatActivity() {
         gstNumberOutput.text = "GSTIN: $gstNumber"
         emailIdOutput.text = "Email ID: $emailId"
         phoneNumberOutput.text = "Phone Number: $phoneNumber"
+        footercompanyOutput.text= companyName
     }
 
     private fun getFileName(): String {

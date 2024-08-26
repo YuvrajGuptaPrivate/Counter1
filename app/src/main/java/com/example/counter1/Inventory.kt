@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.*
 
-data class Item(val name: String, val quantity: String, val price: String, val description: String)
+data class Item(val name: String, var quantity: String, var price: String, val description: String)
 
 class Inventory : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -39,7 +39,7 @@ class Inventory : Fragment() {
         // Load data from internal storage
         inventoryData = loadInventoryData()
 
-        recyclerViewAdapter = InventoryAdapter(inventoryData)
+        recyclerViewAdapter = InventoryAdapter(this,inventoryData)
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -120,5 +120,22 @@ class Inventory : Fragment() {
         saveInventoryData(newData)
         inventoryData = newData
         recyclerViewAdapter.notifyItemInserted(newData.size - 1)
+    }
+
+    private fun RefreshInventoryData(newData: ArrayList<Item>) {
+        saveInventoryData(newData)
+        recyclerViewAdapter.inventoryData = newData
+        recyclerViewAdapter.notifyDataSetChanged()
+    }
+
+    fun updateItemQuantity(itemName: String, newQuantity: String) {
+        // Find the item in the inventory data
+        val itemToUpdate = inventoryData.find { it.name == itemName }
+        if (itemToUpdate != null) {
+            // Update the quantity of the item
+            itemToUpdate.quantity = newQuantity
+            // Save the updated inventory data
+            RefreshInventoryData(inventoryData)
+        }
     }
 }

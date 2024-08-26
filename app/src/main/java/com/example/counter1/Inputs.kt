@@ -1,5 +1,6 @@
 package com.example.counter1
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,6 +43,8 @@ class Inputs : AppCompatActivity() {
 
         saveinputbutton.setOnClickListener {
             saveInputs()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
