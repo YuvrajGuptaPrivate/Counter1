@@ -22,6 +22,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,18 +31,20 @@ import com.itextpdf.text.Document
 import com.itextpdf.text.Image
 import com.itextpdf.text.pdf.PdfWriter
 import java.io.BufferedReader
+import java.io.BufferedWriter
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.util.Date
 import java.util.Locale
 
 
 
-class InvoiceScreen : AppCompatActivity() {
+class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
 
     private lateinit var fName: String
     private lateinit var layout: LinearLayout
@@ -64,10 +67,12 @@ class InvoiceScreen : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.invoicescreenrecyclerview)
 
+
         // Load data from internal storage
         inventoryData = loadInventoryData()
 
-        val adapter = Billadapter(this, inventoryData)
+
+        val adapter = Billadapter(this,inventoryData,this )
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -89,10 +94,38 @@ class InvoiceScreen : AppCompatActivity() {
 
     }
 
+    override fun updateQuantity(itemName: String, newQuantity: String) {
+        val itemToUpdate = inventoryData.find { it.name == itemName }
+        if (itemToUpdate != null) {
+            // Update the quantity of the item
+            itemToUpdate.quantity = newQuantity
+            // Save the updated inventory data
+            RefreshData(inventoryData)
+        }
+    }
+    fun RefreshData(newData: ArrayList<Item>) {
+        saveInventoryData(newData)
+    }
+
+    private fun saveInventoryData(data: ArrayList<Item>) {
+        val file = File(this.filesDir, "inventory_data.txt")
+        val fileOutputStream = FileOutputStream(file)
+        val outputStreamWriter = OutputStreamWriter(fileOutputStream)
+        val bufferedWriter = BufferedWriter(outputStreamWriter)
+
+        for (item in data) {
+            bufferedWriter.write("${item.name},${item.quantity},${item.price},${item.description}\n")
+        }
+
+        bufferedWriter.close()
+    }
+
+
+
 
     override fun onResume() {
         super.onResume()
-        recyclerViewAdapter = Billadapter(this,inventoryData)
+        recyclerViewAdapter = Billadapter(this,inventoryData,this )
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }

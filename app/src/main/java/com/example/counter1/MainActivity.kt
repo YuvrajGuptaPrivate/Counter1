@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragments(home())
 
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.Home -> replaceFragments(home())
@@ -43,4 +44,5 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.Framelayout,fragment)
         fragmentTransaction.commit()
     }
+
 }

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.*
-
 data class Item(val name: String, var quantity: String, var price: String, val description: String)
 
 class Inventory : Fragment() {
@@ -71,6 +70,7 @@ class Inventory : Fragment() {
         return view
 
     }
+
     override fun onPause() {
         super.onPause()
         saveInventoryData(inventoryData)
@@ -128,7 +128,7 @@ class Inventory : Fragment() {
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
-    fun updateItemQuantity(itemName: String, newQuantity: String) {
+     fun updateItemQuantity(itemName: String, newQuantity: String) {
         // Find the item in the inventory data
         val itemToUpdate = inventoryData.find { it.name == itemName }
         if (itemToUpdate != null) {
@@ -138,4 +138,8 @@ class Inventory : Fragment() {
             RefreshInventoryData(inventoryData)
         }
     }
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.counter1
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,14 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 
+interface QuantityUpdateCallback {
+    fun updateQuantity(itemName: String, newQuantity: String)
+}
+
 class InvoiceItem(val name: String, var solditemquantity: Int)
 private val addedItems: MutableList<InvoiceItem> = mutableListOf()
 
-class Billadapter(private val context: Context, private val invoiceItems: MutableList<Item>) : RecyclerView.Adapter<Billadapter.ViewHolder>() {
+class Billadapter(private val context: Context,  private val invoiceItems: MutableList<Item>,private val quantityUpdateCallback: QuantityUpdateCallback) : RecyclerView.Adapter<Billadapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
@@ -39,7 +44,6 @@ class Billadapter(private val context: Context, private val invoiceItems: Mutabl
         val itemNameTextView: TextView = itemView.findViewById(R.id.Itemnameinvoice)
         val quantityTextView: TextView = itemView.findViewById(R.id.quantityofitemininvoice)
         val addButton: Button = itemView.findViewById(R.id.editfrominvoice)
-
         init {
             addButton.setOnClickListener {
                 // Show a dialog to input quantity
@@ -66,6 +70,12 @@ class Billadapter(private val context: Context, private val invoiceItems: Mutabl
                         writer.close()
                         // Notify the adapter that the data has changed
                         notifyDataSetChanged()
+
+                        // Log the item name and quantity
+                        Log.d("Added Item", "Item Name: ${item.name}, Quantity: ${item.quantity}")
+                        quantityUpdateCallback.updateQuantity(item.name, item.quantity) // Pass the string values here
+
+
                     } else {
                         // Show an error message if the selected quantity is more than the actual quantity
                         Toast.makeText(context, "Not enough quantity in stock", Toast.LENGTH_SHORT).show()
