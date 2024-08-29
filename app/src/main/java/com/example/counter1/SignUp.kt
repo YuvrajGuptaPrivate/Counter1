@@ -1,9 +1,12 @@
 package com.example.counter1
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +23,13 @@ class SignUp : AppCompatActivity() {
         var SignEmail = findViewById<EditText>(R.id.SignEmail)
         var SignPass  = findViewById<EditText>(R.id.SignPass)
         var SignConfirmPass = findViewById<EditText>(R.id.SignConfirmPass)
+        val logoImageView = findViewById<ImageView>(R.id.toptext)
+
+        if (isNightModeEnabled(this)) {
+            logoImageView.setImageResource(R.drawable.nightlogo)
+        } else {
+            logoImageView.setImageResource(R.drawable.logosvg)
+        }
 
 
         button.setOnClickListener {
@@ -53,5 +63,8 @@ class SignUp : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    fun isNightModeEnabled(context: Context): Boolean {
+        return context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 }

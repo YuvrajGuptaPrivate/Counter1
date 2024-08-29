@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 
 
 class home : Fragment() {
@@ -20,6 +23,29 @@ class home : Fragment() {
             val intent = Intent(requireContext(), Inputs::class.java)
             startActivity(intent)
         }
+
+        val billingbutton = view.findViewById<LinearLayout>(R.id.billingbuton)
+        billingbutton.setOnClickListener{
+            (requireActivity() as MainActivity).replaceFragments(Billing())
+        }
+        val inventorybutton = view.findViewById<LinearLayout>(R.id.InventoryManage)
+        inventorybutton.setOnClickListener{
+            (requireActivity() as MainActivity).replaceFragments(Inventory())
+        }
+        val profitlossbutton = view.findViewById<LinearLayout>(R.id.profitlosss)
+        profitlossbutton.setOnClickListener{
+            (requireActivity() as MainActivity).replaceFragments(Stats())
+
+        }
+
+        val shopinfobutton = view.findViewById<LinearLayout>(R.id.Shopinfobutton)
+        shopinfobutton.setOnClickListener{
+            val intent = Intent(requireContext(),Inputs::class.java)
+            startActivity(intent)
+        }
+
+
+
 
         return view
     }

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        enableEdgeToEdge()
         replaceFragments(home())
 
 
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.Stats -> replaceFragments(Stats())
                 R.id.Bill -> replaceFragments(Billing())
                 else ->{
-
                 }
             }
             true
@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
-    private fun replaceFragments(fragment: Fragment){
+
+     fun replaceFragments(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.Framelayout,fragment)

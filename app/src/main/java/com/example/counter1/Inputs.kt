@@ -43,8 +43,7 @@ class Inputs : AppCompatActivity() {
 
         saveinputbutton.setOnClickListener {
             saveInputs()
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 

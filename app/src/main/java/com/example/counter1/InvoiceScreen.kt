@@ -22,7 +22,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -264,11 +263,7 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
 
             // Commit the fragment transaction on the main thread
             runOnUiThread {
-                val fragmentManager = supportFragmentManager
-                val fragmentTransaction = fragmentManager.beginTransaction()
-                val myFragment = Billing()
-                fragmentTransaction.replace(R.id.Framelayout, myFragment)
-                fragmentTransaction.commit()
+               finish()
             }
         } catch (e: Exception) {
             Log.e("Error", "Error generating PDF: $e")

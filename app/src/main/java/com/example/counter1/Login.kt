@@ -1,8 +1,11 @@
 package com.example.counter1
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +19,13 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         val textView = findViewById<TextView>(R.id.bottomtext)
         val button= findViewById<Button>(R.id.Loginbutton)
+        val logoImageView = findViewById<ImageView>(R.id.toptext)
+
+        if (isNightModeEnabled(this)) {
+            logoImageView.setImageResource(R.drawable.nightlogo)
+        } else {
+            logoImageView.setImageResource(R.drawable.logosvg)
+        }
 
         textView.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
@@ -45,5 +55,8 @@ class Login : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    fun isNightModeEnabled(context: Context): Boolean {
+        return context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 }

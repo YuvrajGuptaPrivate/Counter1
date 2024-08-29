@@ -55,10 +55,16 @@
                     android:hint="Quantity" />
 
                 <EditText
-                    android:id="@+id/price"
+                    android:id="@+id/Sellingprice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price" />
+                    android:hint="Selling Price" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Unit Cost"
+                    android:id="@+id/UnitCost"/>
 
                 <EditText
                     android:id="@+id/description"

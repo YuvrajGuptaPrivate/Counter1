@@ -30,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:text="Counter1"
                 android:textSize="24sp"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"/>
@@ -202,6 +201,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:id="@+id/InventoryManage"
+                    android:clickable="true"
                     android:layout_marginStart="16dp">
 
                     <TextView
@@ -210,14 +211,14 @@
                         android:text="Inventory Management"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/black" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Manage your stock and orders"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                         />
 
                 </LinearLayout>
 
@@ -239,6 +240,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:clickable="true"
+                    android:id="@+id/profitlosss"
                     android:layout_marginStart="16dp">
 
                     <TextView
@@ -247,14 +250,14 @@
                         android:text="Profit and Loss"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/black" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Track your business performance"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                         />
 
                 </LinearLayout>
 
@@ -276,6 +279,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:clickable="true"
+                    android:id="@+id/billingbuton"
                     android:layout_marginStart="16dp">
 
                     <TextView
@@ -284,20 +289,21 @@
                         android:text="Billing"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/black" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Create and manage invoices"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                         />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -321,14 +327,14 @@
                         android:text="Automation"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/black" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Automate repetitive tasks"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                        />
 
                 </LinearLayout>
 
@@ -358,14 +364,14 @@
                         android:text="ShopInfo"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="@color/black" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Shop Information"
                         android:textSize="14sp"
-                        android:textColor="@color/black" />
+                         />
 
                 </LinearLayout>
 

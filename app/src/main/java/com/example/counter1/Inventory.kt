@@ -21,7 +21,7 @@ class Inventory : Fragment() {
     private lateinit var saveItemButton: Button
     private lateinit var itemNameEditText: EditText
     private lateinit var quantityEditText: EditText
-    private lateinit var priceEditText: EditText
+    private lateinit var sellingpriceEditText: EditText
     private lateinit var descriptionEditText: EditText
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +32,7 @@ class Inventory : Fragment() {
         saveItemButton = view.findViewById(R.id.save_item)
         itemNameEditText = view.findViewById(R.id.item_name)
         quantityEditText = view.findViewById(R.id.quantity)
-        priceEditText = view.findViewById(R.id.price)
+        sellingpriceEditText = view.findViewById(R.id.Sellingprice)
         descriptionEditText = view.findViewById(R.id.description)
 
         // Load data from internal storage
@@ -50,9 +50,8 @@ class Inventory : Fragment() {
         saveItemButton.setOnClickListener {
             val itemName = itemNameEditText.text.toString()
             val quantity = quantityEditText.text.toString()
-            val price = priceEditText.text.toString()
+            val price = sellingpriceEditText.text.toString()
             val description = descriptionEditText.text.toString()
-
             val item = Item(itemName, quantity, price, description)
             inventoryData.add(item)
 
@@ -63,7 +62,7 @@ class Inventory : Fragment() {
             // Reset the input fields
             itemNameEditText.setText(resources.getString(R.string.empty_string))
             quantityEditText.setText(resources.getString(R.string.empty_string))
-            priceEditText.setText(resources.getString(R.string.empty_string))
+            sellingpriceEditText.setText(resources.getString(R.string.empty_string))
             descriptionEditText.setText(resources.getString(R.string.empty_string))
         }
 

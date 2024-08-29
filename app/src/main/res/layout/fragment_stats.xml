@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".Stats">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,11 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="center"
             android:layout_marginTop="16dp">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
                 android:src="@drawable/baseline_speed_24" />
 
             <TextView
@@ -25,7 +31,6 @@
                 android:layout_height="wrap_content"
                 android:text="Counter1"
                 android:textSize="24sp"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"/>
@@ -36,7 +41,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textAlignment="center"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="70dp"
                 android:text="Profit and Loss"/>
 
         </LinearLayout>
@@ -72,35 +77,13 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
+                <com.github.mikephil.charting.charts.BarChart
+                    android:layout_width="match_parent"
+                    android:id="@+id/RevenueBarchart"
+                    android:layout_height="400dp"
                     android:background="@color/light_gray" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@color/blue" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
             </LinearLayout>
         </LinearLayout>
 
@@ -134,10 +117,11 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center">
 
-                <View
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/pie_chart" />
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/pie_chart"
+                    android:background="@color/light_gray"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -165,42 +149,6 @@
                 android:layout_height="wrap_content"
                 android:text="Net Profit: $20,000" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -208,35 +156,13 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center">
 
-                <View
+                <com.github.mikephil.charting.charts.LineChart
                     android:layout_width="0dp"
-                    android:layout_height="20dp"
+                    android:layout_height="400dp"
+                    android:id="@+id/linechartProfitnloss"
                     android:layout_weight="1"
                     android:background="@color/light_gray" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/line_chart" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="@color/light_gray" />
             </LinearLayout>
         </LinearLayout>
 
@@ -245,6 +171,6 @@
 
     </LinearLayout>
 
-
+    </ScrollView>
 
 </FrameLayout>

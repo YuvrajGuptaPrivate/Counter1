@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id ("kotlin-parcelize")
+
 }
 
 android {
@@ -51,6 +53,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.karumi:dexter:6.2.2")
     implementation ("com.itextpdf:itextpdf:5.0.6")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 
 
