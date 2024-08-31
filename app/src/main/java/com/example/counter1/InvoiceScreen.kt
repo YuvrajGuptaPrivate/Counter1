@@ -40,8 +40,7 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.util.Date
 import java.util.Locale
-
-
+data class BilledItem(val itemName: String, val quantity: Int, val unitprice: String,val amount:Int)
 
 class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
 
@@ -77,6 +76,7 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
 
         button2.setOnClickListener {
             updateTemplateLayout()
+            setupBillItemsLayout()
         }
 
         button1.setOnClickListener {
@@ -156,6 +156,37 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         val invoiceNumber = "INV-" + System.currentTimeMillis()
         invoiceNumberOutput.text = "INVOICE NUMBER: $invoiceNumber"
 
+    }
+
+   ///handling billed items data
+
+
+     fun loadBilledItemsFromFile() {
+        val file = File(this.filesDir, "billed_items.txt")
+        if (file.exists()) {
+            val fileInputStream = FileInputStream(file)
+            val inputStreamReader = InputStreamReader(fileInputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+
+            val billedItems = mutableListOf<BilledItem>()
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                val parts = line!!.split(",")
+                billedItems.add(BilledItem(parts[0], parts[1].toInt(), parts[2], parts[3].toInt()))
+            }
+
+            bufferedReader.close()
+
+            // Set up the RecyclerView with the loaded data
+            val recyclerView = findViewById<RecyclerView>(R.id.BillItemRecyclerview)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            val adapter = BillItemsAdapter(this, billedItems)
+            recyclerView.adapter = adapter
+        }
+    }
+
+    fun setupBillItemsLayout() {
+        loadBilledItemsFromFile()
     }
 
 

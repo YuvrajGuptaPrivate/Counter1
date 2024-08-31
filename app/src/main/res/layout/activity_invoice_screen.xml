@@ -111,56 +111,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/invoicescreenrecyclerview"
                 android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/tvHeadingStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Invoice Price Info" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="123"
-                    android:id="@+id/edt_sub_total"
-                    android:hint="Sub Total" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:text="50"
-                    android:id="@+id/edt_tax_total"
-                    android:layout_height="wrap_content"
-                    android:hint="Tax Total" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="200"
-                    android:id="@+id/edt_grand_total"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Grand Total" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <include
                 layout="@layout/templateutil"/>
