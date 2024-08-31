@@ -159,8 +159,6 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
     }
 
    ///handling billed items data
-
-
      fun loadBilledItemsFromFile() {
         val file = File(this.filesDir, "billed_items.txt")
         if (file.exists()) {
@@ -189,6 +187,25 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         loadBilledItemsFromFile()
     }
 
+    private fun clearBilledItemsFile() {
+        val file = File(filesDir, "billed_items.txt")
+        if (file.exists()) {
+            try {
+                val outputStream = FileOutputStream(file)
+                outputStream.write("".toByteArray())
+                outputStream.close()
+                Log.d("File", "Billed items file cleared")
+                Toast.makeText(this, "Billed items file cleared", Toast.LENGTH_SHORT).show()
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Log.e("File", "Error clearing billed items file", e)
+                Toast.makeText(this, "Error clearing billed items file", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    ///
 
     private fun loadInventoryData(): ArrayList<Item> {
         val file = File(this.filesDir, "inventory_data.txt")
@@ -293,6 +310,7 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
             document.close()
             Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show()
             savePDFToLocalStorage()
+            clearBilledItemsFile() // Clear the billed items file
 
             // Commit the fragment transaction on the main thread
             runOnUiThread {
