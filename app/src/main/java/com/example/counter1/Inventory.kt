@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.io.*
-data class Item(val name: String, var quantity: String, var price: String, val description: String)
+data class Item(val name: String, var quantity: String, var sellingprice: String, val description: String)
 
 class Inventory : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -34,7 +34,6 @@ class Inventory : Fragment() {
         quantityEditText = view.findViewById(R.id.quantity)
         sellingpriceEditText = view.findViewById(R.id.Sellingprice)
         descriptionEditText = view.findViewById(R.id.description)
-
         // Load data from internal storage
         inventoryData = loadInventoryData()
 
@@ -50,14 +49,14 @@ class Inventory : Fragment() {
         saveItemButton.setOnClickListener {
             val itemName = itemNameEditText.text.toString()
             val quantity = quantityEditText.text.toString()
-            val price = sellingpriceEditText.text.toString()
+            val sellingprice = sellingpriceEditText.text.toString()
             val description = descriptionEditText.text.toString()
-            val item = Item(itemName, quantity, price, description)
+            val item = Item(itemName, quantity, sellingprice, description)
             inventoryData.add(item)
 
             // Update the RecyclerView
-            recyclerViewAdapter.notifyItemInserted(inventoryData.size - 1)
             updateInventoryData(inventoryData)
+            recyclerViewAdapter.notifyDataSetChanged() // Add this line
 
             // Reset the input fields
             itemNameEditText.setText(resources.getString(R.string.empty_string))
@@ -109,9 +108,8 @@ class Inventory : Fragment() {
         val bufferedWriter = BufferedWriter(outputStreamWriter)
 
         for (item in data) {
-            bufferedWriter.write("${item.name},${item.quantity},${item.price},${item.description}\n")
+            bufferedWriter.write("${item.name},${item.quantity},${item.sellingprice},${item.description}\n")
         }
-
         bufferedWriter.close()
     }
 
@@ -137,6 +135,12 @@ class Inventory : Fragment() {
             RefreshInventoryData(inventoryData)
         }
     }
+    fun removeItem(itemName: String) {
+        inventoryData.removeAll { it.name == itemName }
+        saveInventoryData(inventoryData)
+        recyclerViewAdapter.notifyDataSetChanged()
+    }
+
 
 
 

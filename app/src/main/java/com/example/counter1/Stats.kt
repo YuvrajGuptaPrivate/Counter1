@@ -32,7 +32,7 @@ class Stats : Fragment() {
             PieEntry(20f, "Revenue"),
             PieEntry(30f, "Expenses"),
             PieEntry(50f, "Profit")
-        ), "Profit and Loss")
+        ), "")
 
         // Set the colors for the pie chart slices
         pieDataSet.colors = listOf(

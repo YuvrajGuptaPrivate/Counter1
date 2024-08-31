@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -46,6 +47,7 @@ class Login : AppCompatActivity() {
             } else {
                 val intent = Intent(this, Inputs::class.java)
                 startActivity(intent)
+                Toast.makeText(this, "Please give inputs first", Toast.LENGTH_LONG).show()
             }
         }
 

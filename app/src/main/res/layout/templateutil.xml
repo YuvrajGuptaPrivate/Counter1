@@ -251,12 +251,11 @@
 
                 <!-- Item -->
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/BillItems"
                     android:layout_width="match_parent"
                     android:background="@drawable/border_black"
                     android:padding="5dp"
                     android:layout_height="match_parent" />
-
-
 
                 <!-- Total -->
                 <LinearLayout
@@ -280,13 +279,13 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="5dp"
-                        android:text="hsf150"
+                        android:text=""
                         android:textSize="10sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="34"
+                        android:text=""
                         android:padding="5dp"
                         android:layout_weight="1"
                         android:textSize="10sp" />
@@ -294,7 +293,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2.5"
+                        android:text=""
                         android:padding="5dp"
                         android:layout_weight="1"
                         android:textSize="10sp" />
@@ -302,7 +301,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="₹ 250"
+                        android:id="@+id/total"
+                        android:text="₹"
                         android:padding="5dp"
                         android:layout_weight="1"
                         android:textSize="10sp"
@@ -536,7 +536,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="3470rs"
+                                    android:text="₹"
                                     android:textSize="10sp" />
 
                             </LinearLayout>

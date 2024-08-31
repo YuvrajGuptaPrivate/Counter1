@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 
 
 class Inputs : AppCompatActivity() {
@@ -45,7 +46,21 @@ class Inputs : AppCompatActivity() {
             saveInputs()
             finish()
         }
+        val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
+
+        val companyName = sharedPreferences.getString("company_name", "")
+        val companyAddress = sharedPreferences.getString("company_address", "")
+        val gstNumber = sharedPreferences.getString("gst_number", "")
+        val phoneNumber = sharedPreferences.getString("phone_number", "")
+        val emailId = sharedPreferences.getString("email_id", "")
+
+        if (companyName!!.isNotEmpty() && companyAddress!!.isNotEmpty() && gstNumber!!.isNotEmpty() && phoneNumber!!.isNotEmpty() && emailId!!.isNotEmpty()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 
     private fun saveInputs() {
         val companyName = companynameinput.text.toString()

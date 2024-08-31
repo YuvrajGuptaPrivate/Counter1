@@ -1,6 +1,7 @@
 // InventoryAdapter.kt
 package com.example.counter1
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,10 +53,11 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
             removeButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
+                    val itemName = inventoryData[position].name
+                    inventoryFragment.removeItem(itemName)
                     inventoryData.removeAt(position)
                     notifyItemRemoved(position)
-                    notifyDataSetChanged() // Update the RecyclerView
-
+                    notifyDataSetChanged()
                 }
             }
         }
@@ -70,11 +72,7 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = inventoryData[position].name
         holder.quantityTextView.text = "Quantity: ${inventoryData[position].quantity}"
-        holder.priceTextView.text = "Price: ${inventoryData[position].price}"
-
-
-
-
+        holder.priceTextView.text = "Price: ${inventoryData[position].sellingprice}"
     }
 
     override fun getItemCount(): Int {

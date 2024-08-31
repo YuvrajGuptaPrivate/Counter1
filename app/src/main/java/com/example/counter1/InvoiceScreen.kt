@@ -113,7 +113,7 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         val bufferedWriter = BufferedWriter(outputStreamWriter)
 
         for (item in data) {
-            bufferedWriter.write("${item.name},${item.quantity},${item.price},${item.description}\n")
+            bufferedWriter.write("${item.name},${item.quantity},${item.sellingprice},${item.description}\n")
         }
 
         bufferedWriter.close()
@@ -155,7 +155,9 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         // Generate unique invoice number
         val invoiceNumber = "INV-" + System.currentTimeMillis()
         invoiceNumberOutput.text = "INVOICE NUMBER: $invoiceNumber"
+
     }
+
 
     private fun loadInventoryData(): ArrayList<Item> {
         val file = File(this.filesDir, "inventory_data.txt")

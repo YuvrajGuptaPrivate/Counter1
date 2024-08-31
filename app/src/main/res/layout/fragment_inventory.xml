@@ -60,11 +60,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Selling Price" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Unit Cost"
-                    android:id="@+id/UnitCost"/>
 
                 <EditText
                     android:id="@+id/description"
@@ -121,6 +116,9 @@
 
 
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
@@ -134,10 +132,10 @@
                 android:layout_height="match_parent"
                 android:id="@+id/recycelerviewforinventorymanagemnt"
                 />
-
-
-
+            
         </FrameLayout>
+        </ScrollView>
+
     </LinearLayout>
 
 

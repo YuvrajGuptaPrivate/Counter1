@@ -20,8 +20,11 @@ interface QuantityUpdateCallback {
     fun updateQuantity(itemName: String, newQuantity: String)
 }
 
-class InvoiceItem(val name: String, var solditemquantity: Int)
-private val addedItems: MutableList<InvoiceItem> = mutableListOf()
+class SoldInventory(val name: String, var solditemquantity: Int)
+
+class Bill(var name: String,var quantity:Int,var price:Int, var Total: Long ,var Grandtoal:Long)
+
+private val addedItems: MutableList<Bill> = mutableListOf()
 
 class Billadapter(private val context: Context,  private val invoiceItems: MutableList<Item>,private val quantityUpdateCallback: QuantityUpdateCallback) : RecyclerView.Adapter<Billadapter.ViewHolder>() {
 
@@ -56,23 +59,30 @@ class Billadapter(private val context: Context,  private val invoiceItems: Mutab
                     val quantity = quantityEditText.text.toString().toInt()
                     val item = invoiceItems[adapterPosition]
                     if (item.quantity.toInt() >= quantity) {
+                        var price = item.sellingprice.toInt()
+                        var total = price*(quantity).toLong()
+                        var grandTotal = 0L
                         // Add the item to the new list
-                        val invoiceItem = InvoiceItem(item.name, 0)
-                        invoiceItem.solditemquantity = quantity
-                        addedItems.add(invoiceItem)
+                        val Bill = Bill(item.name, 0,price, total,grandTotal )
+                        Bill.quantity = quantity
+                        addedItems.add(Bill)
+                        // Calculate the grand total
+                        for (bill in addedItems) {
+                            grandTotal += bill.Total
+                        }
                         // Subtract the user's added quantity from saved quantity
                         invoiceItems[adapterPosition].quantity = (item.quantity.toInt() - quantity).toString()
                         // Save the item to another file
                         val file = File(context.filesDir, "added_items.txt")
                         val fileOutputStream = FileOutputStream(file, true)
                         val writer = BufferedWriter(OutputStreamWriter(fileOutputStream))
-                        writer.write("${item.name},${quantity}\n")
+                        writer.write("${item.name},${quantity},${price},${total},${grandTotal}\n")
                         writer.close()
                         // Notify the adapter that the data has changed
                         notifyDataSetChanged()
 
+
                         // Log the item name and quantity
-                        Log.d("Added Item", "Item Name: ${item.name}, Quantity: ${item.quantity}")
                         quantityUpdateCallback.updateQuantity(item.name, item.quantity) // Pass the string values here
 
 

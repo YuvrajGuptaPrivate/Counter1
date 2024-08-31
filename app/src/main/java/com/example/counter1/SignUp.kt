@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -46,6 +47,7 @@ class SignUp : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 val intent = Intent(this, Inputs::class.java)
+                Toast.makeText(this, "Please give inputs first", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
         }
