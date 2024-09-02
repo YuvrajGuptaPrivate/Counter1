@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/Home"
         android:icon="@drawable/baseline_home_24"
         android:title="Home"/>
@@ -8,10 +9,8 @@
         android:title="Inventory"/>
     <item android:id="@+id/Stats"
         android:icon="@drawable/baseline_pie_chart_24"
-        android:title="Stats"/>
-
+        android:title="Stats" />
     <item android:id="@+id/Bill"
         android:icon="@drawable/baseline_receipt_24"
         android:title="Billing"/>
-
 </menu>

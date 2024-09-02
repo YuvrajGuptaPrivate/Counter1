@@ -20,7 +20,7 @@ interface QuantityUpdateCallback {
     fun updateQuantity(itemName: String, newQuantity: String)
 }
 
-class SoldInventory(val name: String, var solditemquantity: Int)
+class SoldInventory(val name: String, var solditemquantity: Int,var price : Int)
 
 
 private val addedItems: MutableList<SoldInventory> = mutableListOf()
@@ -58,17 +58,25 @@ class Billadapter(private val context: Context,  private val invoiceItems: Mutab
                     val quantity = quantityEditText.text.toString().toInt()
                     val item = invoiceItems[adapterPosition]
                     if (item.quantity.toInt() >= quantity) {
+
+                        val price = (item.sellingprice).toInt()
                         // Add the item to the new list
-                        val soldInventory = SoldInventory(item.name, quantity )
+                        val soldInventory = SoldInventory(item.name, quantity ,price)
                         soldInventory.solditemquantity = quantity
+                        soldInventory.price = item.sellingprice.toInt()
                         addedItems.add(soldInventory)
+
                         // Subtract the user's added quantity from saved quantity
                         invoiceItems[adapterPosition].quantity = (item.quantity.toInt() - quantity).toString()
                         // Save the item to another file
+
                         val file = File(context.filesDir, "sold_items.txt")
+                        if (!file.exists()) {
+                            file.createNewFile()
+                        }
                         val fileOutputStream = FileOutputStream(file, true)
                         val writer = BufferedWriter(OutputStreamWriter(fileOutputStream))
-                        writer.write("${item.name},${quantity}\n")
+                        writer.write("${item.name},${soldInventory.solditemquantity},${soldInventory.price}\n")
                         writer.close()
                         // Notify the adapter that the data has changed
                         notifyDataSetChanged()
@@ -76,9 +84,6 @@ class Billadapter(private val context: Context,  private val invoiceItems: Mutab
                         val amount = quantity*(item.sellingprice.toInt())
                         //passing data to billing
                         billedItems(item.name, quantity, item.sellingprice,amount)
-
-
-
                         quantityUpdateCallback.updateQuantity(item.name, item.quantity) // Pass the string values here
 
 

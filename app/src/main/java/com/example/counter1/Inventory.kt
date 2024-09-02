@@ -80,7 +80,7 @@ class Inventory : Fragment() {
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
-    private fun loadInventoryData(): ArrayList<Item> {
+    fun loadInventoryData(): ArrayList<Item> {
         val file = File(requireContext().filesDir, "inventory_data.txt")
         val data = ArrayList<Item>()
 
