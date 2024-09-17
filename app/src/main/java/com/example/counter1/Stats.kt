@@ -27,7 +27,7 @@ class Stats : Fragment() {
 
         val businessMetrics = BusinessMetrics(requireContext())
         // Calculate and update Total Expenses TextView
-        val totalExpenses = businessMetrics.calculateExpensesFromInventoryFile()
+        val totalExpenses = businessMetrics.calculateExpenses()
         val totalExpensesTextView = view.findViewById<TextView>(R.id.totalexpenssestextview)
         totalExpensesTextView.text = "Total Expenses: Rs ${totalExpenses}"
 
@@ -56,6 +56,7 @@ class Stats : Fragment() {
         val pieChart = view?.findViewById<PieChart>(R.id.pie_chart)
         // Create a pie chart data set
         val pieDataSet = PieDataSet(listOf(
+            PieEntry(businessMetrics.calculateInventoryCostExpenses().toFloat(),"Inventory Cost"),
             PieEntry(businessMetrics.calculateSalaryExpenses().toFloat(), "Salary"),
             PieEntry(businessMetrics.calculateMarketingExpenses().toFloat(), "Marketing"),
             PieEntry(businessMetrics.calculateRentExpenses().toFloat(), "Rent"),
@@ -64,6 +65,7 @@ class Stats : Fragment() {
 
         // Set the colors for the pie chart slices
         pieDataSet.colors = listOf(
+            Color.rgb(255,165,0),
             Color.rgb(255, 0, 0), // Red for Salary
             Color.rgb(0, 255, 0), // Green for Marketing
             Color.rgb(0, 0, 255), // Blue for Rent

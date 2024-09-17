@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:text="Counter1"
             android:textSize="24sp"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"/>

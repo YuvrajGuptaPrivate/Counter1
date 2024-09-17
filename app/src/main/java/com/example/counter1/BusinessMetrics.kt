@@ -1,6 +1,7 @@
 package com.example.counter1
 
 import android.content.Context
+import android.util.Log
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
@@ -41,14 +42,19 @@ class BusinessMetrics(private val context: Context) {
     }
 
     // Calculate Expenses
-    fun calculateExpenses(
-        costOfGoodsSold: Double,
-        operatingExpenses: Double,
-        interestExpenses: Double,
-        taxes: Double
-    ): Double {
-        return costOfGoodsSold + operatingExpenses + interestExpenses + taxes
+    fun calculateExpenses(): Long {
+        val totalExpenses = calculateExpensesFromInventoryFile().toLong()
+        val others = calculateOtherExpenses().toLong()
+        val salarys= calculateSalaryExpenses().toLong()
+        val marketingcost= calculateMarketingExpenses().toLong()
+        val Rents =calculateRentExpenses().toLong()
+
+        return totalExpenses + others + salarys + marketingcost + Rents
     }
+
+
+
+
 
 
     // Function to calculate expenses from inventory data
@@ -58,18 +64,18 @@ class BusinessMetrics(private val context: Context) {
         // Calculate total selling price
         for (item in data) {
             totalSellingPrice += (item.sellingprice).toDouble() * item.quantity.toDouble()
+
         }
 
         // Assume cost of goods sold is 50% of total selling price
-        val costOfGoodsSold = totalSellingPrice * 0.5
+        val totalinventorycost = totalSellingPrice
 
-        // Assume operating expenses, interest expenses, and taxes are 10%, 5%, and 5% of total selling price respectively
-        val operatingExpenses = totalSellingPrice * 0.1
-        val interestExpenses = totalSellingPrice * 0.05
-        val taxes = totalSellingPrice * 0.05
+
+
+
 
         // Calculate expenses
-        return calculateExpenses(costOfGoodsSold, operatingExpenses, interestExpenses, taxes)
+        return totalinventorycost
     }
 
     // Usage
@@ -103,30 +109,35 @@ class BusinessMetrics(private val context: Context) {
         // Assume salary expenses are 20% of total expenses
         val totalExpenses = calculateExpensesFromInventoryFile()
         return totalExpenses * 0.2
+
+    }
+
+    fun calculateInventoryCostExpenses(): Double {
+        val totalExpenses = calculateExpensesFromInventoryFile()
+        return totalExpenses * 0.7
+
     }
 
     // Function to calculate marketing expenses
     fun calculateMarketingExpenses(): Double {
-        // Assume marketing expenses are 15% of total expenses
         val totalExpenses = calculateExpensesFromInventoryFile()
-        return totalExpenses * 0.15
+        return  totalExpenses *0.1
     }
 
     // Function to calculate rent expenses
     fun calculateRentExpenses(): Double {
         // Assume rent expenses are 10% of total expenses
         val totalExpenses = calculateExpensesFromInventoryFile()
-        return totalExpenses * 0.1
+        return  totalExpenses *0.1
+
     }
 
     // Function to calculate other expenses
     fun calculateOtherExpenses(): Double {
-        // Assume other expenses are 55% of total expenses
         val totalExpenses = calculateExpensesFromInventoryFile()
-        return totalExpenses * 0.55
+        return totalExpenses * 0.03
+
     }
-
-
 
 
 }

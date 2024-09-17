@@ -63,6 +63,7 @@ class Inventory : Fragment() {
             quantityEditText.setText(resources.getString(R.string.empty_string))
             sellingpriceEditText.setText(resources.getString(R.string.empty_string))
             descriptionEditText.setText(resources.getString(R.string.empty_string))
+
         }
 
         return view

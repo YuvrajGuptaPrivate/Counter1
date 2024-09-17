@@ -16,13 +16,8 @@ class Intro : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_intro)
         val button = findViewById<Button>(R.id.btnGetStart)
-        val logoImageView = findViewById<ImageView>(R.id.imageView2)
 
-        if (isNightModeEnabled(this)) {
-            logoImageView.setImageResource(R.drawable.nightlogo)
-        } else {
-            logoImageView.setImageResource(R.drawable.logosvg)
-        }
+
 
         // Set the OnClickListener
         button.setOnClickListener {
