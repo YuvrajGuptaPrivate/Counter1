@@ -1,4 +1,4 @@
-package com.example.counter1
+package com.example.counter1.Inventory
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,14 +8,23 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.io.*
-data class Item(val name: String, var quantity: String, var sellingprice: String, val description: String)
+import com.example.counter1.Db.AppDATABASE
+import com.example.counter1.Db.InventoryDao
+
+import com.example.counter1.Db.InventoryDataClass
+import com.example.counter1.R
+import java.text.SimpleDateFormat
+
+import java.util.Calendar
+import java.util.Locale
+
 
 class Inventory : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var inventoryData: ArrayList<Item>
     private lateinit var recyclerViewAdapter: InventoryAdapter
     private lateinit var inputFields: LinearLayout
     private lateinit var saveItemButton: Button
@@ -23,6 +32,10 @@ class Inventory : Fragment() {
     private lateinit var quantityEditText: EditText
     private lateinit var sellingpriceEditText: EditText
     private lateinit var descriptionEditText: EditText
+
+    private lateinit var viewModel: InventoryViewModel
+    private lateinit var inventoryDao: InventoryDao
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_inventory, container, false)
@@ -34,12 +47,20 @@ class Inventory : Fragment() {
         quantityEditText = view.findViewById(R.id.quantity)
         sellingpriceEditText = view.findViewById(R.id.Sellingprice)
         descriptionEditText = view.findViewById(R.id.description)
-        // Load data from internal storage
-        inventoryData = loadInventoryData()
 
-        recyclerViewAdapter = InventoryAdapter(this,inventoryData)
+        inventoryDao = AppDATABASE.getinstance(requireContext()).inventoryDao()
+        val factory = InventoryViewModelFactory(inventoryDao)
+        viewModel = ViewModelProvider(this,factory).get(InventoryViewModel::class.java)
+
+
+        recyclerViewAdapter = InventoryAdapter(this)
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.AllInventory.observe(viewLifecycleOwner, Observer { inventory ->
+            recyclerViewAdapter.updateInventoryList(inventory)
+            recyclerViewAdapter.notifyDataSetChanged()
+        })
 
         // Add button click listeners
         val addButton = view.findViewById<Button>(R.id.additem)
@@ -48,40 +69,94 @@ class Inventory : Fragment() {
         }
         saveItemButton.setOnClickListener {
             val itemName = itemNameEditText.text.toString()
-            val quantity = quantityEditText.text.toString()
-            val sellingprice = sellingpriceEditText.text.toString()
+            val quantity = quantityEditText.text.toString().toInt()
+            val sellingprice = sellingpriceEditText.text.toString().toLong()
             val description = descriptionEditText.text.toString()
-            val item = Item(itemName, quantity, sellingprice, description)
-            inventoryData.add(item)
+            // Get the current date
+            val calendar = Calendar.getInstance()
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = dateFormat.format(calendar.time)
+            val itemdata = InventoryDataClass(0,itemName, quantity, sellingprice, description,date)
+            viewModel.insertInventoryitem(itemdata)
 
-            // Update the RecyclerView
-            updateInventoryData(inventoryData)
+
             recyclerViewAdapter.notifyDataSetChanged() // Add this line
 
-            // Reset the input fields
-            itemNameEditText.setText(resources.getString(R.string.empty_string))
-            quantityEditText.setText(resources.getString(R.string.empty_string))
-            sellingpriceEditText.setText(resources.getString(R.string.empty_string))
-            descriptionEditText.setText(resources.getString(R.string.empty_string))
-
+            clearinputs()
         }
 
         return view
 
     }
 
+
     override fun onPause() {
         super.onPause()
-        saveInventoryData(inventoryData)
     }
 
     override fun onResume() {
         super.onResume()
-        inventoryData = loadInventoryData()
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
-    fun loadInventoryData(): ArrayList<Item> {
+    private fun clearinputs(){
+        // Reset the input fields
+        itemNameEditText.setText(resources.getString(R.string.empty_string))
+        quantityEditText.setText(resources.getString(R.string.empty_string))
+        sellingpriceEditText.setText(resources.getString(R.string.empty_string))
+        descriptionEditText.setText(resources.getString(R.string.empty_string))
+
+    }
+
+
+    fun removeItem(itemName: String) {
+
+        viewModel.deleteInventoryitem(itemName)
+    }
+
+    fun updateItemQuantity(itemName: String, newQuantity: Int) {
+        viewModel.updateInventoryitem(itemName, newQuantity)
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+fun loadInventoryData(): ArrayList<Item> {
         val file = File(requireContext().filesDir, "inventory_data.txt")
         val data = ArrayList<Item>()
 
@@ -142,8 +217,4 @@ class Inventory : Fragment() {
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
-
-
-
-
-}
+ */

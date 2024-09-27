@@ -1,7 +1,6 @@
 // InventoryAdapter.kt
-package com.example.counter1
+package com.example.counter1.Inventory
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.counter1.Db.InventoryDataClass
+import com.example.counter1.R
 
-class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryData: ArrayList<Item> ) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
+class InventoryAdapter(private val inventoryFragment: Inventory) : RecyclerView.Adapter<InventoryAdapter.ViewHolder>() {
+
+    private var inventoryList: ArrayList<InventoryDataClass> = ArrayList()
+
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,6 +27,12 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
         val saveButton: Button = itemView.findViewById(R.id.save)
         val priceTextView: TextView = itemView.findViewById(R.id.priceoutput)
 
+        fun bind(inventoryData: InventoryDataClass) {
+            textView.text = inventoryData.itemName
+            quantityTextView.text = "Quantity: ${inventoryData.itemstocks}"
+            priceTextView.text = "Price: ${inventoryData.itemprice}"
+        }
+
 
         init {
             editButton.setOnClickListener {
@@ -32,13 +42,15 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
                 editButton.visibility = View.GONE
             }
 
+
+
             saveButton.setOnClickListener {
                 val newQuantity = editQuantityEditText.text.toString()
                 if (newQuantity.isNotEmpty()) {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        val itemName = inventoryData[position].name
-                        inventoryFragment.updateItemQuantity(itemName, newQuantity)
+                        val itemName = inventoryList[position].itemName
+                        inventoryFragment.updateItemQuantity(itemName!!, newQuantity.toInt())
 
                         quantityTextView.text = "Quantity: $newQuantity" // Update the quantityTextView
                         quantityTextView.visibility = View.VISIBLE
@@ -53,9 +65,8 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
             removeButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val itemName = inventoryData[position].name
-                    inventoryFragment.removeItem(itemName)
-                    inventoryData.removeAt(position)
+                    val itemName = inventoryList[position].itemName
+                    inventoryFragment.removeItem(itemName!!)
                     notifyItemRemoved(position)
                     notifyDataSetChanged()
                 }
@@ -70,12 +81,16 @@ class InventoryAdapter(private val inventoryFragment: Inventory, var inventoryDa
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = inventoryData[position].name
-        holder.quantityTextView.text = "Quantity: ${inventoryData[position].quantity}"
-        holder.priceTextView.text = "Price: ${inventoryData[position].sellingprice}"
+        holder.bind(inventoryList[position])
     }
 
     override fun getItemCount(): Int {
-        return inventoryData.size
+        return inventoryList.size
+    }
+
+    fun updateInventoryList(inventoryData: List<InventoryDataClass>) {
+        inventoryList.clear()
+        inventoryList.addAll(inventoryData)
+        notifyDataSetChanged()
     }
 }

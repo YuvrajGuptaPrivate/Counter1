@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 
 @Dao
@@ -12,22 +14,27 @@ interface InventoryDao {
     @Insert
     suspend fun InsertItem(inventoryDataClass: InventoryDataClass)
 
-    @Delete
-    suspend fun DeleteItem(inventoryDataClass: InventoryDataClass)
+    @Query("DELETE FROM Inventory WHERE itemName = :itemName")
+    suspend fun DeleteItemByName(itemName: String)
 
-    @Update
-    suspend fun UpdateItem(inventoryDataClass: InventoryDataClass)
+
+    @Query("UPDATE Inventory SET itemstocks = :newQuantity WHERE itemName = :itemName")
+    suspend fun UpdateItemQuantity(itemName: String, newQuantity: Int)
 
     @Query ("SELECT * FROM Inventory")
-    suspend fun GetALLInventory():LiveData<List<InventoryDataClass>>
+      fun GetALLInventory():LiveData<List<InventoryDataClass>>
 }
 
 
 
 @Dao
 interface SalesDao{
-    @Insert
-    suspend fun InsertSalesData(sales: Sales)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+     suspend fun insertSale(sales: Sales)
+
+    @Query("SELECT * FROM Sales WHERE itemId = :itemId")
+    fun getSaleByItemId(itemId: Int): Sales?
 
     @Delete
     suspend fun DeleteSalesData(sales: Sales)
@@ -36,7 +43,23 @@ interface SalesDao{
     suspend fun UpdateSalesData(sales: Sales)
 
     @Query("SELECT * FROM Sales")
-    suspend fun GetAllSAles():LiveData<List<Sales>>
+     fun GetAllSAles():LiveData<List<Sales>>
+
+    @Transaction
+   suspend fun insertOrUpdateSale(sales: Sales) {
+        val existingSale = getSaleByItemId(sales.itemId)
+        if (existingSale != null) {
+            val updatedSale = Sales(
+                itemId = sales.itemId,
+                itemprice = sales.itemprice,
+                quantity = existingSale.quantity + sales.quantity
+            )
+            UpdateSalesData(updatedSale)
+        } else {
+            insertSale(sales)
+        }
+    }
+
 }
 
 
@@ -49,5 +72,5 @@ interface OrderDao{
     suspend fun DeleteOrderData(order: Order)
 
     @Query("SELECT * FROM ORDERDATA")
-    suspend fun GetALLOrderData():LiveData<List<Order>>
+     fun GetALLOrderData():LiveData<List<Order>>
 }

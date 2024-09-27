@@ -1,8 +1,11 @@
 package com.example.counter1.Db
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 @Entity("Inventory")
 data class InventoryDataClass(
@@ -20,10 +23,16 @@ data class InventoryDataClass(
     @ColumnInfo(name = "itemdate")
     var itemdate :String)
 
-
-
-@Entity("Sales")
+@Entity(
+    foreignKeys = [ForeignKey(
+        entity = InventoryDataClass::class,
+        parentColumns = arrayOf("itemId"),
+        childColumns = arrayOf("itemId"),
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class Sales(
+    @PrimaryKey
     @ColumnInfo(name = "itemId")
     val itemId: Int,
     @ColumnInfo(name = "itemprice")
@@ -32,10 +41,23 @@ data class Sales(
     var quantity : Int
 )
 
+data class InventoryAndSales(
+    @Embedded
+    val inventoryDataClass: InventoryDataClass,
+    @Relation(
+        parentColumn = "itemId",
+        entityColumn = "itemId"
+    )
+    val sales: List<Sales>
+)
+
+
+
+
 @Entity("ORDERDATA")
 data class Order(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("orderid ")
+    @ColumnInfo("orderid")
     val orderid : Int,
     @ColumnInfo(name = "CustomerName")
     val customerName:String,

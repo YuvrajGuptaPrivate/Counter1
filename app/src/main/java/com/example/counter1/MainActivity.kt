@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.counter1.Inventory.Inventory
+import com.example.counter1.Invoicing.Billing
 import com.example.counter1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

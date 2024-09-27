@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:hint="Item Name"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/quantityofbilleditem"
@@ -20,13 +20,13 @@
         android:layout_weight="1"
         android:textAlignment="center"
         android:hint="quantity"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
     <TextView
         android:id="@+id/UnitPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/priceofbilleditem"
@@ -36,7 +36,7 @@
         android:textAlignment="textEnd"
         android:layout_weight="1"
         android:hint="Price"
-        android:textSize="16sp" />
+        android:textSize="12sp" />
 
 
 

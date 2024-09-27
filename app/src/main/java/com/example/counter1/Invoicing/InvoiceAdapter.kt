@@ -1,10 +1,11 @@
-package com.example.counter1
+package com.example.counter1.Invoicing
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.counter1.R
 
 class InvoiceAdapter(private val invoices: List<Invoice>, private val onClick: (Invoice) -> Unit) :
     RecyclerView.Adapter<InvoiceAdapter.ViewHolder>() {

@@ -1,4 +1,4 @@
-package com.example.counter1
+package com.example.counter1.Invoicing
 
 import android.app.Activity
 import android.content.Context
@@ -22,39 +22,61 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.counter1.Db.AppDATABASE
+import com.example.counter1.Db.InventoryDao
+import com.example.counter1.Db.InventoryDataClass
+import com.example.counter1.Db.Order
+import com.example.counter1.Db.OrderDao
+import com.example.counter1.Db.Sales
+import com.example.counter1.Db.SalesDao
+import com.example.counter1.R
 import com.google.android.material.textfield.TextInputEditText
 import com.itextpdf.text.Document
 import com.itextpdf.text.Image
 import com.itextpdf.text.pdf.PdfWriter
-import java.io.BufferedReader
-import java.io.BufferedWriter
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
 import java.util.Date
 import java.util.Locale
-data class BilledItem(val itemName: String, val quantity: Int, val unitprice: String,val amount:Int)
 
-class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
+data class Item(val name: String, var quantity: String, var sellingprice: String, val description: String)
+
+data class OrderedItem(
+    val itemId: Int,
+    val itemName: String,
+    val quantity: Int,
+    val unitprice: Int
+)
+
+class InvoiceScreen : AppCompatActivity() {
 
     private lateinit var fName: String
     private lateinit var layout: LinearLayout
     private lateinit var button1: Button
     private lateinit var button2: Button
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewAdapter: Billadapter
-    private lateinit var inventoryData: ArrayList<Item>
+    private lateinit var recyclerViewAdapter: InventoryDataForInvoiceSCreenadapter
+    private lateinit var viewModel: InvoiceScreenViewModel
+    private lateinit var inventoryDao : InventoryDao
+    private lateinit var salesDao: SalesDao
+    private lateinit var salesViewModel: SalesViewModel
+    private lateinit var orderViewModel: OrderViewModel
+    private lateinit var orderDao: OrderDao
 
+    private lateinit var billrecyclerview : RecyclerView
+    private lateinit var billadapter : BillItemAdapter
 
-
-
+    private lateinit var totalcartValuetextview : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,23 +84,58 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         layout = findViewById(R.id.templateutil)
         button1 = findViewById(R.id.printbtn)
         button2 = findViewById(R.id.proceedbtn)
+        totalcartValuetextview = findViewById(R.id.totalcartvalue)
 
         recyclerView = findViewById(R.id.invoicescreenrecyclerview)
 
+        salesDao = AppDATABASE.getinstance(applicationContext).salesDao()
+        val salesFactory = SalesViewModelFactory(salesDao)
+        salesViewModel = ViewModelProvider(this, salesFactory).get(SalesViewModel::class.java)
 
-        // Load data from internal storage
-        inventoryData = loadInventoryData()
+        inventoryDao = AppDATABASE.getinstance(applicationContext).inventoryDao()
+        val factory = InvoiceScreenViewFactory(inventoryDao)
+        viewModel = ViewModelProvider(this,factory).get(InvoiceScreenViewModel::class.java)
 
+        orderDao = AppDATABASE.getinstance(applicationContext).orderDao()
+        val orderfactory = OrderVMFactory(orderDao)
+        orderViewModel = ViewModelProvider(this,orderfactory).get(OrderViewModel::class.java)
 
-        val adapter = Billadapter(this,inventoryData,this )
-        recyclerView.adapter = adapter
+        recyclerViewAdapter = InventoryDataForInvoiceSCreenadapter(this,this)
+        recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        viewModel.AllInventory.observe(this, Observer { inventory: List<InventoryDataClass> ->
+            recyclerViewAdapter.updateInventoryList(inventory)
+            recyclerViewAdapter.notifyDataSetChanged()
+        })
+
+        billrecyclerview = findViewById(R.id.BillItemRecyclerview)
+        billrecyclerview.layoutManager = LinearLayoutManager(this)
+        billadapter = BillItemAdapter(this, emptyList())
+        billrecyclerview.adapter = billadapter
+
+
+
+
+
         button2.setOnClickListener {
-            updateTemplateLayout()
-            setupBillItemsLayout()
+             updateTemplateLayout()
+            recyclerViewAdapter.orderedItemsList.observe(this, Observer {
+                OrderedItem ->
+            recyclerViewAdapter.totalCartValue.observe(this, Observer {
+                totalCartValue ->
+                    proceedWithOrder(OrderedItem, totalCartValue)
+                displayItemsInRecyclerView(OrderedItem)
+                totalcartValuetextview.text = "Rs $totalCartValue"
+
+                })
+            })
+
+
+
         }
 
+        //pdf creater
         button1.setOnClickListener {
             val fileName = getFileName()
             fName = fileName
@@ -93,38 +150,52 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
 
     }
 
-    override fun updateQuantity(itemName: String, newQuantity: String) {
-        val itemToUpdate = inventoryData.find { it.name == itemName }
-        if (itemToUpdate != null) {
-            // Update the quantity of the item
-            itemToUpdate.quantity = newQuantity
-            // Save the updated inventory data
-            RefreshData(inventoryData)
-        }
-    }
-    fun RefreshData(newData: ArrayList<Item>) {
-        saveInventoryData(newData)
+     fun updateQuantity(itemName: String, newQuantity: Int) {
+            viewModel.updateInventoryitem(itemName, newQuantity)
     }
 
-    private fun saveInventoryData(data: ArrayList<Item>) {
-        val file = File(this.filesDir, "inventory_data.txt")
-        val fileOutputStream = FileOutputStream(file)
-        val outputStreamWriter = OutputStreamWriter(fileOutputStream)
-        val bufferedWriter = BufferedWriter(outputStreamWriter)
-
-        for (item in data) {
-            bufferedWriter.write("${item.name},${item.quantity},${item.sellingprice},${item.description}\n")
-        }
-
-        bufferedWriter.close()
+    fun insertSalesData(sales: Sales){
+        salesViewModel.insertSalesData(sales)
     }
+
+    fun storeOrder( customerName: String, orderedItems: List<OrderedItem>, TotalCartValue: Long): Order {
+        val gson = Gson()
+        val itemsOrderedJson = gson.toJson(orderedItems) // Convert the list of ordered items to a JSON string
+        return Order(
+            0,
+            customerName = customerName,
+            itemsOrdered = itemsOrderedJson,  // Store JSON string in the database
+            TotalCartValue
+        )
+    }
+
+    fun proceedWithOrder(orderedItemsList: List<OrderedItem>, totalCartValue: Long) {
+
+        val customerNameInput: TextInputEditText = findViewById(R.id.customername_input)
+        val customerName = customerNameInput.text.toString()
+        val data = storeOrder(customerName, orderedItemsList, totalCartValue)
+        // Perform further actions like updating the UI or moving to the next screen.
+        orderViewModel.insertorderData(data)
+    }
+
+    fun displayItemsInRecyclerView(items: List<OrderedItem>) {
+        billadapter.updateItems(items)
+        billrecyclerview.adapter = billadapter
+    }
+
+
+
+
+
+
+
 
 
 
 
     override fun onResume() {
         super.onResume()
-        recyclerViewAdapter = Billadapter(this,inventoryData,this )
+        recyclerViewAdapter = InventoryDataForInvoiceSCreenadapter(this,this )
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -156,77 +227,22 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
         val invoiceNumber = "INV-" + System.currentTimeMillis()
         invoiceNumberOutput.text = "INVOICE NUMBER: $invoiceNumber"
 
+
+
     }
 
-   ///handling billed items data
-     fun loadBilledItemsFromFile() {
-        val file = File(this.filesDir, "billed_items.txt")
-        if (file.exists()) {
-            val fileInputStream = FileInputStream(file)
-            val inputStreamReader = InputStreamReader(fileInputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
 
-            val billedItems = mutableListOf<BilledItem>()
-            var line: String?
-            while (bufferedReader.readLine().also { line = it } != null) {
-                val parts = line!!.split(",")
-                billedItems.add(BilledItem(parts[0], parts[1].toInt(), parts[2], parts[3].toInt()))
-            }
 
-            bufferedReader.close()
 
-            // Set up the RecyclerView with the loaded data
-            val recyclerView = findViewById<RecyclerView>(R.id.BillItemRecyclerview)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            val adapter = BillItemsAdapter(this, billedItems)
-            recyclerView.adapter = adapter
-        }
-    }
-
-    fun setupBillItemsLayout() {
-        loadBilledItemsFromFile()
-    }
-
-    private fun clearBilledItemsFile() {
-        val file = File(filesDir, "billed_items.txt")
-        if (file.exists()) {
-            try {
-                val outputStream = FileOutputStream(file)
-                outputStream.write("".toByteArray())
-                outputStream.close()
-                Log.d("File", "Billed items file cleared")
-                Toast.makeText(this, "Billed items file cleared", Toast.LENGTH_SHORT).show()
-            } catch (e: IOException) {
-                e.printStackTrace()
-                Log.e("File", "Error clearing billed items file", e)
-                Toast.makeText(this, "Error clearing billed items file", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 
     ///
 
-    private fun loadInventoryData(): ArrayList<Item> {
-        val file = File(this.filesDir, "inventory_data.txt")
-        val data = ArrayList<Item>()
 
-        if (file.exists()) {
-            val fileInputStream = FileInputStream(file)
-            val inputStreamReader = InputStreamReader(fileInputStream)
-            val bufferedReader = BufferedReader(inputStreamReader)
 
-            var line: String?
-            while (bufferedReader.readLine().also { line = it } != null) {
-                val parts = line!!.split(",")
-                data.add(Item(parts[0], parts[1], parts[2], parts[3]))
-            }
 
-            bufferedReader.close()
-        }
 
-        return data
-    }
+
     // Modified updateTemplateLayout function
     private fun updateTemplateLayoutCompany() {
         val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
@@ -310,7 +326,6 @@ class InvoiceScreen : AppCompatActivity(),QuantityUpdateCallback   {
             document.close()
             Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show()
             savePDFToLocalStorage()
-            clearBilledItemsFile() // Clear the billed items file
 
             // Commit the fragment transaction on the main thread
             runOnUiThread {
