@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.counter1.Utility.Inputs
 import com.example.counter1.R
 
 class Billing : Fragment() {
@@ -41,6 +42,12 @@ class Billing : Fragment() {
         val createNewInvoiceButton = view.findViewById<Button>(R.id.createBtn)
         createNewInvoiceButton.setOnClickListener {
             navigateToInvoiceScreen()
+        }
+
+        val edittemplate = view.findViewById<Button>(R.id.EditTemplate)
+        edittemplate.setOnClickListener {
+            val intent = Intent(context, Inputs::class.java)
+            startActivity(intent)
         }
 
         return view

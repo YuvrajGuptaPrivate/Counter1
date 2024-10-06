@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home">
+    tools:context=".dashboard.home">
 
 
     <LinearLayout
@@ -23,6 +23,7 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/baseline_speed_24" />
 
             <TextView
@@ -64,13 +65,14 @@
             android:layout_marginTop="16dp"
             android:backgroundTint="#F5F5F5"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardElevation="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,15 +82,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Business Overview"
-                        android:textStyle="bold"
+                        android:textColor="#000000"
                         android:textSize="18sp"
-                        android:textColor="#000000" />
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="end">
+                        android:gravity="end"
+                        android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/refresh"
@@ -97,84 +99,81 @@
                             android:src="@drawable/baseline_refresh_24" />
 
 
-
                     </LinearLayout>
 
                 </LinearLayout>
 
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:id="@+id/revenuetextview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Rs "
-                        android:textSize="20sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="16sp" />
 
                     <TextView
-                        android:layout_width="0dp"
                         android:id="@+id/expensestextview"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Rs "
-                        android:textSize="20sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="16sp" />
 
                     <TextView
-                        android:layout_width="0dp"
                         android:id="@+id/profittextview"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Rs "
-                        android:textSize="20sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Revenue"
-                        android:textSize="14sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Expenses"
-                        android:textSize="14sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:text="Net Profit"
-                        android:textSize="14sp"
                         android:textColor="#000000"
-                        android:gravity="center" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -191,6 +190,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/imll"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
@@ -230,6 +230,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/palll"
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:gravity="center_vertical">
@@ -270,6 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:id="@+id/bll"
                 android:padding="16dp"
                 android:gravity="center_vertical">
 

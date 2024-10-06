@@ -23,19 +23,19 @@
             android:name="android.app.enableOnBackInvokedCallback"
             android:value="true" />
         <activity
-            android:name=".SignUp"
+            android:name=".Authentication.SignUp"
             android:exported="true" />
         <activity
             android:name=".Invoicing.InvoiceScreen"
             android:exported="true" />
         <activity
-            android:name=".Inputs"
+            android:name=".Utility.Inputs"
             android:exported="true" />
         <activity
-            android:name=".Login"
+            android:name=".Authentication.Login"
             android:exported="true" />
         <activity
-            android:name=".Intro"
+            android:name=".Utility.Intro"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>

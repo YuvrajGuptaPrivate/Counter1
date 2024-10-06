@@ -43,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:background="@drawable/rounded_button"
                 android:textAlignment="center"
                 android:layout_marginLeft="130dp"
                 android:text="New Invoice"/>
@@ -138,8 +139,11 @@
             <Button
                 android:id="@+id/createBtn"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:text="Create Invoice"
+                android:background="@drawable/rounded_button"
+
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -169,6 +173,7 @@
             <Button
                 android:id="@+id/EditTemplate"
                 android:layout_width="wrap_content"
+                android:background="@drawable/rounded_button"
                 android:layout_height="wrap_content"
                 android:text="Click to edit"/>
         </LinearLayout>

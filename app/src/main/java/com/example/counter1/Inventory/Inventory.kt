@@ -32,6 +32,7 @@ class Inventory : Fragment() {
     private lateinit var quantityEditText: EditText
     private lateinit var sellingpriceEditText: EditText
     private lateinit var descriptionEditText: EditText
+    private lateinit var backbutton : Button
 
     private lateinit var viewModel: InventoryViewModel
     private lateinit var inventoryDao: InventoryDao
@@ -47,6 +48,7 @@ class Inventory : Fragment() {
         quantityEditText = view.findViewById(R.id.quantity)
         sellingpriceEditText = view.findViewById(R.id.Sellingprice)
         descriptionEditText = view.findViewById(R.id.description)
+        backbutton = view.findViewById(R.id.back)
 
         inventoryDao = AppDATABASE.getinstance(requireContext()).inventoryDao()
         val factory = InventoryViewModelFactory(inventoryDao)
@@ -84,6 +86,12 @@ class Inventory : Fragment() {
 
             clearinputs()
         }
+
+
+        backbutton.setOnClickListener {
+            inputFields.visibility = View.GONE
+        }
+
 
         return view
 

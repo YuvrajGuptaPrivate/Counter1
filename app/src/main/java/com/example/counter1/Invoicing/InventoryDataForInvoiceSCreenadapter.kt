@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -58,7 +59,7 @@ class InventoryDataForInvoiceSCreenadapter(private val activity: InvoiceScreen,p
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemNameTextView: TextView = itemView.findViewById(R.id.Itemnameinvoice)
         val quantityTextView: TextView = itemView.findViewById(R.id.quantityofitemininvoice)
-        val addButton: Button = itemView.findViewById(R.id.editfrominvoice)
+        val addButton: ImageButton = itemView.findViewById(R.id.editfrominvoice)
 
         init {
             addButton.setOnClickListener {
