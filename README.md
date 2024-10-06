@@ -116,9 +116,9 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [settings.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/settings.gradle.kts) | <code>❯ REPLACE-ME</code> |
-| [build.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/build.gradle.kts) | <code>❯ REPLACE-ME</code> |
-| [gradlew.bat](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/gradlew.bat) | <code>❯ REPLACE-ME</code> |
+| [settings.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/settings.gradle.kts) | <code>❯ -</code> |
+| [build.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/build.gradle.kts) | <code>❯ -</code> |
+| [gradlew.bat](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/gradlew.bat) | <code>❯ -</code> |
 
 </details>
 
@@ -126,7 +126,7 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [libs.versions.toml](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/gradle/libs.versions.toml) | <code>❯ REPLACE-ME</code> |
+| [libs.versions.toml](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/gradle/libs.versions.toml) | <code>❯ -</code> |
 
 </details>
 
@@ -134,9 +134,9 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [proguard-rules.pro](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/proguard-rules.pro) | <code>❯ REPLACE-ME</code> |
-| [google-services.json](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/google-services.json) | <code>❯ REPLACE-ME</code> |
-| [build.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/build.gradle.kts) | <code>❯ REPLACE-ME</code> |
+| [proguard-rules.pro](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/proguard-rules.pro) | <code>❯ -</code> |
+| [google-services.json](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/google-services.json) | <code>❯ -</code> |
+| [build.gradle.kts](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/build.gradle.kts) | <code>❯ -</code> |
 
 </details>
 
@@ -144,7 +144,7 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [MainActivity.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/MainActivity.kt) | <code>❯ REPLACE-ME</code> |
+| [MainActivity.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/MainActivity.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -152,9 +152,9 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [DATABASE.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/DATABASE.kt) | <code>❯ REPLACE-ME</code> |
-| [InventoryInterface.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/InventoryInterface.kt) | <code>❯ REPLACE-ME</code> |
-| [Tables.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/Tables.kt) | <code>❯ REPLACE-ME</code> |
+| [DATABASE.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/DATABASE.kt) | <code>❯ -</code> |
+| [InventoryInterface.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/InventoryInterface.kt) | <code>❯ -</code> |
+| [Tables.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Db/Tables.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -162,8 +162,8 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [Inputs.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Utility/Inputs.kt) | <code>❯ REPLACE-ME</code> |
-| [Intro.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Utility/Intro.kt) | <code>❯ REPLACE-ME</code> |
+| [Inputs.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Utility/Inputs.kt) | <code>❯ -</code> |
+| [Intro.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Utility/Intro.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -171,8 +171,8 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [SignUp.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Authentication/SignUp.kt) | <code>❯ REPLACE-ME</code> |
-| [Login.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Authentication/Login.kt) | <code>❯ REPLACE-ME</code> |
+| [SignUp.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Authentication/SignUp.kt) | <code>❯ -</code> |
+| [Login.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Authentication/Login.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -180,17 +180,17 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [InvoiceScreen.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreen.kt) | <code>❯ REPLACE-ME</code> |
-| [SalesViewModelFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/SalesViewModelFactory.kt) | <code>❯ REPLACE-ME</code> |
-| [InvoiceAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceAdapter.kt) | <code>❯ REPLACE-ME</code> |
-| [InventoryDataForInvoiceSCreenadapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InventoryDataForInvoiceSCreenadapter.kt) | <code>❯ REPLACE-ME</code> |
-| [SalesViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/SalesViewModel.kt) | <code>❯ REPLACE-ME</code> |
-| [InvoiceScreenViewFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreenViewFactory.kt) | <code>❯ REPLACE-ME</code> |
-| [BilledItemAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/BilledItemAdapter.kt) | <code>❯ REPLACE-ME</code> |
-| [InvoiceScreenViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreenViewModel.kt) | <code>❯ REPLACE-ME</code> |
-| [OrderVMFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/OrderVMFactory.kt) | <code>❯ REPLACE-ME</code> |
-| [OrderViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/OrderViewModel.kt) | <code>❯ REPLACE-ME</code> |
-| [Billing.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/Billing.kt) | <code>❯ REPLACE-ME</code> |
+| [InvoiceScreen.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreen.kt) | <code>❯ -</code> |
+| [SalesViewModelFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/SalesViewModelFactory.kt) | <code>❯ -</code> |
+| [InvoiceAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceAdapter.kt) | <code>❯ -</code> |
+| [InventoryDataForInvoiceSCreenadapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InventoryDataForInvoiceSCreenadapter.kt) | <code>❯ -</code> |
+| [SalesViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/SalesViewModel.kt) | <code>❯ -</code> |
+| [InvoiceScreenViewFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreenViewFactory.kt) | <code>❯ -</code> |
+| [BilledItemAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/BilledItemAdapter.kt) | <code>❯ -</code> |
+| [InvoiceScreenViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/InvoiceScreenViewModel.kt) | <code>❯ -</code> |
+| [OrderVMFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/OrderVMFactory.kt) | <code>❯ -</code> |
+| [OrderViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/OrderViewModel.kt) | <code>❯ -</code> |
+| [Billing.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Invoicing/Billing.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -198,7 +198,7 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [Home.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/dashboard/Home.kt) | <code>❯ REPLACE-ME</code> |
+| [Home.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/dashboard/Home.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -206,9 +206,9 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [Stats.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/Stats.kt) | <code>❯ REPLACE-ME</code> |
-| [BusinessMetricsVMfactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/BusinessMetricsVMfactory.kt) | <code>❯ REPLACE-ME</code> |
-| [BusinessMetricsViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/BusinessMetricsViewModel.kt) | <code>❯ REPLACE-ME</code> |
+| [Stats.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/Stats.kt) | <code>❯ -</code> |
+| [BusinessMetricsVMfactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/BusinessMetricsVMfactory.kt) | <code>❯ -</code> |
+| [BusinessMetricsViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Statics/BusinessMetricsViewModel.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -216,10 +216,10 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [InventoryViewModelFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryViewModelFactory.kt) | <code>❯ REPLACE-ME</code> |
-| [InventoryAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryAdapter.kt) | <code>❯ REPLACE-ME</code> |
-| [InventoryViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryViewModel.kt) | <code>❯ REPLACE-ME</code> |
-| [Inventory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/Inventory.kt) | <code>❯ REPLACE-ME</code> |
+| [InventoryViewModelFactory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryViewModelFactory.kt) | <code>❯ -</code> |
+| [InventoryAdapter.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryAdapter.kt) | <code>❯ -</code> |
+| [InventoryViewModel.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/InventoryViewModel.kt) | <code>❯ -</code> |
+| [Inventory.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/main/java/com/example/counter1/Inventory/Inventory.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -227,7 +227,7 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [ExampleInstrumentedTest.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/androidTest/java/com/example/counter1/ExampleInstrumentedTest.kt) | <code>❯ REPLACE-ME</code> |
+| [ExampleInstrumentedTest.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/androidTest/java/com/example/counter1/ExampleInstrumentedTest.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -235,7 +235,7 @@ Reduce manual work, enabling business owners to focus on growing their business.
 
 | File | Summary |
 | --- | --- |
-| [ExampleUnitTest.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/test/java/com/example/counter1/ExampleUnitTest.kt) | <code>❯ REPLACE-ME</code> |
+| [ExampleUnitTest.kt](https://github.com/YuvrajGuptaPrivate/Counter1/blob/main/app/src/test/java/com/example/counter1/ExampleUnitTest.kt) | <code>❯ -</code> |
 
 </details>
 
@@ -286,10 +286,22 @@ Execute the test suite using the following command:
 
 ##  Project Roadmap
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
+Project Roadmap
+Phase 1: Core Features (Completed)
+ Inventory Management: Implemented the ability to track and manage stock in real-time.
+ Profit and Loss Analysis: Added functionality to monitor business performance through detailed analytics.
+ Billing System: Integrated a customizable billing and invoicing system for seamless transactions.
+ Basic Automation: Developed automated alerts for low stock and routine business tasks.
+Phase 2: Enhancements (In Progress)
+ Advanced Reporting: Introduce more detailed financial reports with customizable timeframes and filters.
+ Multi-User Support: Allow multiple users with different access levels to manage the app.
+ Data Backup: Implement automated cloud backups to ensure data safety.
+ UI/UX Improvements: Refine the user interface for smoother navigation and enhanced user experience.
+Phase 3: Future Plans
+ E-commerce Integration: Enable businesses to directly link their inventory to e-commerce platforms.
+ AI-based Insights: Introduce AI-driven insights to help businesses make data-backed decisions.
+ Barcode Scanning: Add barcode scanning for faster inventory updates and billing.
+ Mobile Payments Integration: Incorporate popular mobile payment gateways for more convenience.
 ---
 
 ##  Contributing
@@ -336,15 +348,12 @@ Contributions are welcome! Here are several ways you can contribute:
 </details>
 
 ---
-
-##  License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
 ##  Acknowledgments
+-I would like to express my gratitude to the following:
 
-- List any resources, contributors, inspiration, etc. here.
-
+Open-source Community: For providing valuable libraries and resources that helped in the development of this project.
+Android Developer Community: For sharing insightful tutorials, discussions, and best practices that enhanced the app's quality.
+My mentors and peers: For their guidance, feedback, and support throughout the development process.
+Users and testers: For providing valuable feedback that shaped the features and functionality of this app.
+Thank you all for your support and contributions!
 ---
