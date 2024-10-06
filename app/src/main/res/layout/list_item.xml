@@ -12,34 +12,57 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/Items"
+            android:id="@+id/Itemnameoutput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:textStyle="bold"
-            android:text="Item 1" />
+            android:text="Item:" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/quantityoutput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quantity: 10" />
+            android:text="Quantity:" />
+
+        <TextView
+            android:id="@+id/priceoutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price:" />
+
+        <EditText
+            android:id="@+id/edit_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:inputType="number" />
     </LinearLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/edit"
+        android:src="@drawable/baseline_edit_24"
         android:layout_width="48dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="48dp"
         android:layout_margin="10dp"
         android:text="Edit" />
 
-    <Button
+
+    <ImageView
         android:id="@+id/Remove"
+        android:src="@drawable/baseline_dangerous_24"
+        android:layout_width="48dp"
+        android:layout_margin="10dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="20dp"
+        android:text="Remove" />
+
+    <Button
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginRight="20dp"
-        android:text="Remove" />
+        android:visibility="gone"
+        android:text="Save" />
+
 </LinearLayout>

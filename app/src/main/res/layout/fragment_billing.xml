@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Billing">
+    tools:context=".Invoicing.Billing">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -19,25 +23,27 @@
             android:layout_marginTop="16dp">
 
             <ImageView
+                android:layout_marginTop="8dp"
                 android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_height="36dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/baseline_receipt_long_24" />
+                android:src="@drawable/blue_recept_24" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Billing"
                 android:textSize="24sp"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"/>
 
             <Button
+                android:id="@+id/NewInvoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:background="@drawable/rounded_button"
                 android:textAlignment="center"
                 android:layout_marginLeft="130dp"
                 android:text="New Invoice"/>
@@ -77,17 +83,75 @@
 
             <TextView
                 android:id="@+id/template"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:layout_gravity="center"
                 android:text="Invoice Template" />
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <ScrollView
+                android:id="@+id/sView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/sllayout"
+                    android:gravity="end"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/include"
+                        layout="@layout/header"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <include
+                        layout="@layout/bill_to"/>
+                    <include
+                        layout="@layout/content"/>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <include
+                            android:id="@+id/idididi"
+                            layout="@layout/footer" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </ScrollView>
+
+            <Button
+                android:id="@+id/createBtn"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="Create Invoice"
+                android:background="@drawable/rounded_button"
+
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+
+            </Button>
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,7 +164,6 @@
 
 
             <TextView
-                android:id="@+id/EditTemplate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -108,13 +171,13 @@
                 android:text="Edit Template" />
 
             <Button
-                android:layout_width="match_parent"
+                android:id="@+id/EditTemplate"
+                android:layout_width="wrap_content"
+                android:background="@drawable/rounded_button"
                 android:layout_height="wrap_content"
                 android:text="Click to edit"/>
         </LinearLayout>
 
-
-
-
     </LinearLayout>
+</ScrollView>
 </FrameLayout>

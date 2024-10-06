@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inventory">
+    tools:context=".Inventory.Inventory">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
-
 
             <TextView
                 android:id="@+id/base"
@@ -30,22 +29,71 @@
 
             <Button
                 android:id="@+id/additem"
-                android:layout_width="9dp"
-                android:layout_height="68dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/rounded_button"
                 android:text="Add item" />
-        </LinearLayout>
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="38dp"
-            >
-        </SearchView>
+            <LinearLayout
+                android:id="@+id/input_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Item name" />
+
+                <EditText
+                    android:id="@+id/quantity"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Quantity" />
+
+                <EditText
+                    android:id="@+id/Sellingprice"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Selling Price" />
+
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Back" />
+
+                    <Button
+                        android:id="@+id/save_item"
+                        android:layout_marginLeft="70dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Save item" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,20 +105,21 @@
 
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkAll"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="All" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkInstock"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="In stock" />
 
             <CheckBox
+                android:id="@+id/checkOutofstock"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -78,6 +127,9 @@
 
 
         </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
@@ -91,10 +143,10 @@
                 android:layout_height="match_parent"
                 android:id="@+id/recycelerviewforinventorymanagemnt"
                 />
-
-
-
+            
         </FrameLayout>
+        </ScrollView>
+
     </LinearLayout>
 
 

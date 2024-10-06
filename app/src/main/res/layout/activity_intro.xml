@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Intro">
+    tools:context=".Utility.Intro">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="255dp"
         android:layout_height="201dp"
-        android:src="@drawable/logosvg"
+        android:background="@drawable/logosvg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,14 +23,13 @@
         android:id="@+id/textView2"
         android:layout_width="348dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="268dp"
-        android:fontFamily="monospace"
+        android:layout_marginBottom="250dp"
         android:text="Grow with us, together we thrive!"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
     <Button
@@ -42,7 +41,6 @@
         android:padding="10dp"
         android:text="Get Started"
         android:textAllCaps="false"
-        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

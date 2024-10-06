@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.counter1.Inventory.Inventory
+import com.example.counter1.Invoicing.Billing
+import com.example.counter1.Statics.Stats
+import com.example.counter1.dashboard.home
 import com.example.counter1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        enableEdgeToEdge()
         replaceFragments(home())
+
 
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
@@ -25,12 +31,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.Stats -> replaceFragments(Stats())
                 R.id.Bill -> replaceFragments(Billing())
                 else ->{
-
                 }
             }
             true
         }
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -38,10 +42,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
-    private fun replaceFragments(fragment: Fragment){
+
+     fun replaceFragments(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.Framelayout,fragment)
         fragmentTransaction.commit()
     }
+
 }
