@@ -287,21 +287,21 @@ Execute the test suite using the following command:
 ##  Project Roadmap
 
 Project Roadmap
-Phase 1: Core Features (Completed)
- Inventory Management: Implemented the ability to track and manage stock in real-time.
- Profit and Loss Analysis: Added functionality to monitor business performance through detailed analytics.
- Billing System: Integrated a customizable billing and invoicing system for seamless transactions.
- Basic Automation: Developed automated alerts for low stock and routine business tasks.
-Phase 2: Enhancements (In Progress)
- Advanced Reporting: Introduce more detailed financial reports with customizable timeframes and filters.
- Multi-User Support: Allow multiple users with different access levels to manage the app.
- Data Backup: Implement automated cloud backups to ensure data safety.
- UI/UX Improvements: Refine the user interface for smoother navigation and enhanced user experience.
-Phase 3: Future Plans
- E-commerce Integration: Enable businesses to directly link their inventory to e-commerce platforms.
- AI-based Insights: Introduce AI-driven insights to help businesses make data-backed decisions.
- Barcode Scanning: Add barcode scanning for faster inventory updates and billing.
- Mobile Payments Integration: Incorporate popular mobile payment gateways for more convenience.
+-Phase 1: Core Features (Completed)
+- Inventory Management: Implemented the ability to track and manage stock in real-time.
+- Profit and Loss Analysis: Added functionality to monitor business performance through detailed analytics.
+- Billing System: Integrated a customizable billing and invoicing system for seamless transactions.
+- Basic Automation: Developed automated alerts for low stock and routine business tasks.
+-Phase 2: Enhancements (In Progress)
+- Advanced Reporting: Introduce more detailed financial reports with customizable timeframes and filters.
+- Multi-User Support: Allow multiple users with different access levels to manage the app.
+- Data Backup: Implement automated cloud backups to ensure data safety.
+- UI/UX Improvements: Refine the user interface for smoother navigation and enhanced user experience.
+-Phase 3: Future Plans
+- E-commerce Integration: Enable businesses to directly link their inventory to e-commerce platforms.
+- AI-based Insights: Introduce AI-driven insights to help businesses make data-backed decisions.
+- Barcode Scanning: Add barcode scanning for faster inventory updates and billing.
+- Mobile Payments Integration: Incorporate popular mobile payment gateways for more convenience.
 ---
 
 ##  Contributing
@@ -351,9 +351,9 @@ Contributions are welcome! Here are several ways you can contribute:
 ##  Acknowledgments
 -I would like to express my gratitude to the following:
 
-Open-source Community: For providing valuable libraries and resources that helped in the development of this project.
-Android Developer Community: For sharing insightful tutorials, discussions, and best practices that enhanced the app's quality.
-My mentors and peers: For their guidance, feedback, and support throughout the development process.
-Users and testers: For providing valuable feedback that shaped the features and functionality of this app.
+-Open-source Community: For providing valuable libraries and resources that helped in the development of this project.
+-Android Developer Community: For sharing insightful tutorials, discussions, and best practices that enhanced the app's quality.
+-My mentors and peers: For their guidance, feedback, and support throughout the development process.
+-Users and testers: For providing valuable feedback that shaped the features and functionality of this app.
 Thank you all for your support and contributions!
 ---
