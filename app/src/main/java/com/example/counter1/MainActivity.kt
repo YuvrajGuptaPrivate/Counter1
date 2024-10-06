@@ -8,6 +8,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.counter1.Inventory.Inventory
 import com.example.counter1.Invoicing.Billing
+import com.example.counter1.Statics.Stats
+import com.example.counter1.dashboard.home
 import com.example.counter1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

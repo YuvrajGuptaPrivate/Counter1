@@ -75,6 +75,7 @@ class InvoiceScreen : AppCompatActivity() {
 
     private lateinit var billrecyclerview : RecyclerView
     private lateinit var billadapter : BillItemAdapter
+    private var isClicked : Boolean = false
 
     private lateinit var totalcartValuetextview : TextView
 
@@ -119,6 +120,8 @@ class InvoiceScreen : AppCompatActivity() {
 
 
         button2.setOnClickListener {
+
+            isClicked=true
              updateTemplateLayout()
             recyclerViewAdapter.orderedItemsList.observe(this, Observer {
                 OrderedItem ->
@@ -137,9 +140,17 @@ class InvoiceScreen : AppCompatActivity() {
 
         //pdf creater
         button1.setOnClickListener {
-            val fileName = getFileName()
-            fName = fileName
-            layoutTOimageConverter()
+
+            if (isClicked==true){
+                val fileName = getFileName()
+                fName = fileName
+                layoutTOimageConverter()
+                isClicked = false
+            }
+            else{
+                Toast.makeText(this,"Please click on Proceed Button before printing",Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 
@@ -205,6 +216,7 @@ class InvoiceScreen : AppCompatActivity() {
         val customerAddressInput: TextInputEditText = findViewById(R.id.customerAddress_input)
         val customerEmailInput: TextInputEditText = findViewById(R.id.CustomerEmail_input)
         val customerGstInput: TextInputEditText = findViewById(R.id.CustomerGst_input)
+        val customerPhoneInput : TextInputEditText = findViewById(R.id.customerphone_number_input)
 
         val customerNameOutput: TextView = findViewById(R.id.customername_output)
         val customerAddressOutput: TextView = findViewById(R.id.customerAddress_output)
@@ -213,6 +225,15 @@ class InvoiceScreen : AppCompatActivity() {
         val invoiceNumberOutput: TextView = findViewById(R.id.invoice_number_output)
         val dateOutput: TextView = findViewById(R.id.date_output)
 
+
+        // Check if customer name or phone number are empty
+        val customerName = customerNameInput.text?.toString().orEmpty()
+        val customerPhone = customerPhoneInput.text?.toString().orEmpty()
+
+        if (customerName.isBlank() || customerPhone.isBlank()) {
+            Toast.makeText(this, "Customer Name and Phone Number are mandatory", Toast.LENGTH_SHORT).show()
+            return // Exit the function if mandatory fields are missing
+        }
 
         customerNameOutput.text = "PARTY'S NAME - ${customerNameInput.text}"
         customerAddressOutput.text = "ADDRESS: ${customerAddressInput.text}"

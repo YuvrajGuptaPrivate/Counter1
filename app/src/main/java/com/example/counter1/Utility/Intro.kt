@@ -1,14 +1,15 @@
-package com.example.counter1
+package com.example.counter1.Utility
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.widget.Button
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.counter1.Authentication.Login
+import com.example.counter1.R
 
 class Intro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class Intro : AppCompatActivity() {
         // Set the OnClickListener
         button.setOnClickListener {
             // Handle the button click here
-            val intent = Intent(this,Login::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
 

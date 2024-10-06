@@ -1,12 +1,23 @@
-package com.example.counter1
+package com.example.counter1.Utility
 
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.LinearLayout
+import com.example.counter1.MainActivity
+import com.example.counter1.R
+
+enum class ButtonState {
+    NEXT, SAVE
+}
+
+enum class ViewState {
+    STEP1, STEP2
+}
 
 
 class Inputs : AppCompatActivity() {
@@ -23,8 +34,13 @@ class Inputs : AppCompatActivity() {
     private lateinit var phonenumberinput: EditText
     private lateinit var emailinput: EditText
     private lateinit var saveinputbutton: Button
+    private var buttonState = ButtonState.NEXT
+    private var viewState = ViewState.STEP1
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inputs)
 
@@ -42,11 +58,35 @@ class Inputs : AppCompatActivity() {
         emailinput = findViewById(R.id.email_input)
         saveinputbutton = findViewById(R.id.save_input_button)
 
+
+        val editTextGroup1 = findViewById<LinearLayout>(R.id.editTextGroup1)
+        val editTextGroup2 = findViewById<LinearLayout>(R.id.editTextGroup2)
+
+
+
         saveinputbutton.setOnClickListener {
-            saveInputs()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            when (buttonState) {
+                ButtonState.NEXT -> {
+                    // Toggle the visibility of the two groups
+                    editTextGroup1.visibility = View.GONE
+                    editTextGroup2.visibility = View.VISIBLE
+                    buttonState = ButtonState.SAVE
+                    viewState = ViewState.STEP2
+                }
+                ButtonState.SAVE -> {
+                    // Save the user's input and navigate to a new screen
+                    saveInputs()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+            saveinputbutton.text = when (buttonState) {
+                ButtonState.NEXT -> "Next"
+                ButtonState.SAVE -> "Save"
+            }
         }
+
+
     }
 
 

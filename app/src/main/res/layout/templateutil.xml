@@ -355,7 +355,7 @@
                                 android:id="@+id/tandc1"
                                 android:background="@drawable/border_black"
                                 android:padding="5dp"
-                                android:text="1. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                                android:text="1. Goods or services are non-refundable once delivered unless agreed upon in writing. Any disputes must be reported within 2 days of receipt of the invoice."
                                 android:textSize="10sp" />
 
                             <TextView
@@ -364,19 +364,8 @@
                                 android:id="@+id/tandc2"
                                 android:background="@drawable/border_black"
                                 android:padding="5dp"
-                                android:text="2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                android:text="2. The ownership of goods or services remains with the seller until full payment is received."
                                 android:textSize="10sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/tandc3"
-                                android:background="@drawable/border_black"
-                                android:padding="5dp"
-                                android:text="3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                android:textSize="10sp" />
-
-
 
 
 

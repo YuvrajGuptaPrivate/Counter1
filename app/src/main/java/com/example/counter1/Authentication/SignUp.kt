@@ -1,10 +1,11 @@
-package com.example.counter1
+package com.example.counter1.Authentication
 
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -12,14 +13,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.counter1.Utility.Inputs
+import com.example.counter1.MainActivity
+import com.example.counter1.R
 
-class Login : AppCompatActivity() {
+class SignUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
-        val textView = findViewById<TextView>(R.id.bottomtext)
-        val button= findViewById<Button>(R.id.Loginbutton)
+        setContentView(R.layout.activity_sign_up)
+        val button = findViewById<Button>(R.id.Signbtn)
+        val textView = findViewById<TextView>(R.id.logtext)
+        var SignEmail = findViewById<EditText>(R.id.SignEmail)
+        var SignPass  = findViewById<EditText>(R.id.SignPass)
+        var SignConfirmPass = findViewById<EditText>(R.id.SignConfirmPass)
         val logoImageView = findViewById<ImageView>(R.id.toptext)
 
         if (isNightModeEnabled(this)) {
@@ -28,10 +35,7 @@ class Login : AppCompatActivity() {
             logoImageView.setImageResource(R.drawable.logosvg)
         }
 
-        textView.setOnClickListener{
-            val intent = Intent(this,SignUp::class.java)
-            startActivity(intent)
-        }
+
         button.setOnClickListener {
             val sharedPreferences = getSharedPreferences("inputs_data", MODE_PRIVATE)
 
@@ -46,10 +50,17 @@ class Login : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 val intent = Intent(this, Inputs::class.java)
-                startActivity(intent)
                 Toast.makeText(this, "Please give inputs first", Toast.LENGTH_LONG).show()
+                startActivity(intent)
             }
         }
+
+        textView.setOnClickListener{
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
+
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

@@ -5,12 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inputs">
+    tools:context=".Utility.Inputs">
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -36,102 +34,180 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/companyname_input"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:hint="Company Name"
-        android:inputType="text" />
+        android:layout_margin="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter Your Business Details"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your business details, this data will be used to create invoices."
+                android:textSize="14sp"
+                android:layout_marginTop="8dp" />
+
+            <!-- Your EditTexts go here -->
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/editTextGroup1"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/companyname_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:hint="Company Name"
+            android:inputType="text" />
 
 
-    <EditText
-        android:id="@+id/companyaddress_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:hint="Company Address"
-        android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/companyaddress_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:minWidth="48dp"
+            android:background="@drawable/border"
+            android:hint="Company Address"
+            android:inputType="textMultiLine" />
 
-    <EditText
-        android:id="@+id/beneficiaryname_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:hint="Beneficiary Name"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/beneficiaryname_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:hint="Beneficiary Name"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/bankifsccode_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:hint="Bank IFSC Code"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/bankifsccode_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:layout_marginTop="10dp"
+            android:hint="Bank IFSC Code"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/accountnumber_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Account Number"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="number" />
-    <EditText
-        android:id="@+id/bankname_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Bank Name"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/accountnumber_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Account Number"
+            android:layout_marginTop="10dp"
+            android:minHeight="48dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/upiid_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="UPI ID"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="text" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/gstnumber_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="GST Number"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="text" />
 
-    <EditText
-        android:id="@+id/phonenumber_input"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="phone" />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/editTextGroup2"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/email_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email Id"
-        android:minHeight="48dp"
-        android:minWidth="48dp"
-        android:inputType="textMultiLine" />
+        <EditText
+            android:id="@+id/bankname_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bank Name"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:minWidth="48dp"
+            android:background="@drawable/border"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/upiid_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="UPI ID"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/gstnumber_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="GST Number"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/phonenumber_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:minHeight="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Id"
+            android:layout_marginTop="10dp"
+            android:minHeight="48dp"
+            android:background="@drawable/border"
+            android:minWidth="48dp"
+            android:inputType="textMultiLine" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/save_input_button"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Next"
+        app:cornerRadius="2dp" />
 </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
