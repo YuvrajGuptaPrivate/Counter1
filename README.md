@@ -350,10 +350,14 @@ Contributions are welcome! Here are several ways you can contribute:
 ---
 ##  Acknowledgments
 -I would like to express my gratitude to the following:
+<p>-Open-source Community: For providing valuable libraries and resources that helped in the development of this project.
+</p>
+<p>-Android Developer Community: For sharing insightful tutorials, discussions, and best practices that enhanced the app's quality.
+</p>
+<p>-My mentors and peers: For their guidance, feedback, and support throughout the development process.
+</p>
+<p>-Users and testers: For providing valuable feedback that shaped the features and functionality of this app.
+</p>
 
--Open-source Community: For providing valuable libraries and resources that helped in the development of this project.
--Android Developer Community: For sharing insightful tutorials, discussions, and best practices that enhanced the app's quality.
--My mentors and peers: For their guidance, feedback, and support throughout the development process.
--Users and testers: For providing valuable feedback that shaped the features and functionality of this app.
 Thank you all for your support and contributions!
 ---
